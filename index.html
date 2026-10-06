@@ -931,7 +931,7 @@ document.getElementById(id)
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
   import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
   const firebaseConfig = {
     apiKey: "AIzaSyCWV2-_6Rvjs1fxhyf6nxqF2s8bH6fJuX4",
     authDomain: "real-tournament-70194.firebaseapp.com",
@@ -944,7 +944,37 @@ document.getElementById(id)
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+const auth = getAuth(app);
+window.demoLogin = async function(){
 
-  console.log("Firebase connected!");
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if(!email || !password){
+    alert("Email এবং Password দিন");
+    return;
+  }
+
+  try {
+
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    alert("Login Successful!");
+
+    closeM("loginModal");
+
+    console.log("Logged in:", userCredential.user.email);
+
+  } catch(error) {
+
+    alert("Login Failed: " + error.message);
+
+  }
+
+};  console.log("Firebase connected!");
 </script></body>
 </html>
