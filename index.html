@@ -1,380 +1,932 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>REAL TOURNAMENT • Free Fire</title>
 
-    <title>REAL TOURNAMENT</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#6258e8;
+  --bg:#f5f6fb;
+  --text:#25283a;
+  --muted:#858896;
+}
+body{
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:90px;
+}
+button,input{font:inherit}
+button{cursor:pointer}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+header{
+  height:68px;
+  background:#fff;
+  border-bottom:1px solid #e6e7ee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.logo{
+  font-weight:900;
+  font-size:20px;
+  color:var(--primary);
+}
+.logo span{color:#ff4f6d}
 
-        body {
-            min-height: 100vh;
-            background: #07090d;
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
+.profile{
+  width:42px;
+  height:42px;
+  border:1px solid #ddd;
+  border-radius:50%;
+  background:#fff;
+  font-size:21px;
+}
 
-        header {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 18px;
-            border-bottom: 1px solid #20242c;
-            background: #0b0e13;
-        }
+.hero{
+  margin:14px 16px;
+  padding:22px 18px;
+  border-radius:22px;
+  color:#fff;
+  background:linear-gradient(135deg,#5b52e2,#9060f4);
+  box-shadow:0 12px 28px #6359e633;
+}
+.hero h1{
+  font-size:25px;
+  margin-bottom:7px;
+}
+.hero p{
+  font-size:12px;
+  opacity:.9;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.section{
+  padding:7px 16px 10px;
+}
+.section h2{font-size:20px}
+.section p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+}
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#ff4d00,#ff9800);
-            font-size: 22px;
-            font-weight: 900;
-        }
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:0 16px;
+}
 
-        .logo h1 {
-            font-size: 17px;
-            letter-spacing: 2px;
-        }
+.cat{
+  background:#fff;
+  border:1px solid #e3e4eb;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 5px 16px #0000000a;
+  text-align:left;
+}
+.cat:active{transform:scale(.98)}
 
-        .logo small {
-            display: block;
-            margin-top: 2px;
-            color: #ff7a00;
-            font-size: 9px;
-            letter-spacing: 3px;
-        }
+.caticon{
+  height:55px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#eeeefe,#f7ebff);
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  margin-bottom:10px;
+}
+.cat h3{font-size:14px}
+.cat p{
+  font-size:10px;
+  color:#888;
+  margin-top:4px;
+}
+.pill{
+  display:inline-block;
+  margin-top:9px;
+  padding:5px 8px;
+  border-radius:20px;
+  background:#eaf8ef;
+  color:#15934b;
+  font-size:9px;
+  font-weight:bold;
+}
 
-        .login {
-            padding: 10px 15px;
-            border: 1px solid #ff6500;
-            border-radius: 10px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.bottom{
+  position:fixed;
+  z-index:30;
+  left:12px;
+  right:12px;
+  bottom:9px;
+  height:68px;
+  background:#fff;
+  border:1px solid #e4e5ec;
+  border-radius:25px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 8px 28px #0002;
+}
+.nav{
+  text-align:center;
+  color:#777;
+  font-size:10px;
+}
+.nav b{
+  display:block;
+  font-size:20px;
+  margin-bottom:4px;
+}
+.nav.active{
+  color:var(--primary);
+  font-weight:bold;
+}
 
-        .hero {
-            padding: 65px 20px 55px;
-            background:
-                radial-gradient(
-                    circle at 85% 20%,
-                    rgba(255,75,0,.22),
-                    transparent 35%
-                );
-        }
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:50;
+  align-items:flex-end;
+}
+.sheet{
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:25px 25px 0 0;
+  padding:18px 16px;
+}
+.close{
+  float:right;
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#eee;
+  font-size:20px;
+}
+.sheet h2{
+  font-size:20px;
+  margin:5px 0;
+}
+.sub{
+  font-size:12px;
+  color:#888;
+  margin-bottom:14px;
+}
 
-        .tag {
-            display: inline-block;
-            padding: 7px 12px;
-            border: 1px solid #75401f;
-            border-radius: 30px;
-            color: #ff8a00;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+.types{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.type{
+  padding:13px;
+  border:2px solid #eee;
+  border-radius:14px;
+  background:#fff;
+  text-align:left;
+}
+.type.sel{
+  border-color:var(--primary);
+  background:#f4f2ff;
+}
+.type strong{
+  display:block;
+  margin-top:3px;
+}
+.type small{color:#888}
 
-        .hero h2 {
-            margin-top: 20px;
-            font-size: clamp(45px, 13vw, 78px);
-            line-height: .94;
-        }
+.match{
+  border:1px solid #e1e2ea;
+  border-radius:17px;
+  overflow:hidden;
+  margin-top:11px;
+  background:#fff;
+}
 
-        .hero h2 span {
-            color: #ff5a00;
-        }
+.matchtop{
+  height:170px;
+  background:
+    linear-gradient(135deg,#263b74,#745be8);
+  position:relative;
+  color:#fff;
+  padding:15px;
+  display:flex;
+  align-items:flex-end;
+}
+.matchtop:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent,#10152ccc);
+}
 
-        .hero p {
-            max-width: 450px;
-            margin-top: 20px;
-            color: #9299a5;
-            line-height: 1.5;
-            font-size: 16px;
-        }
+.matchtop>*{
+  position:relative;
+  z-index:1;
+}
 
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 25px;
-        }
+.status{
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:6px 9px;
+  border-radius:15px;
+  background:#20a86b;
+  font-size:9px;
+  font-weight:bold;
+}
+.matchcode{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#27364ddd;
+  padding:6px 9px;
+  border-radius:15px;
+  font-size:9px;
+}
+.matchtitle{
+  font-size:18px;
+  font-weight:bold;
+}
 
-        .btn {
-            padding: 14px 18px;
-            border-radius: 11px;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  text-align:center;
+  padding:13px 5px 7px;
+}
+.stats div{
+  border-right:1px solid #eee;
+}
+.stats div:last-child{border:0}
+.stats b{
+  display:block;
+  font-size:15px;
+}
+.stats small{
+  color:#999;
+  font-size:9px;
+}
 
-        .join {
-            background: linear-gradient(135deg,#ff4d00,#ff9800);
-            color: white;
-        }
+.progress{
+  height:6px;
+  background:#eceef4;
+  margin:2px 14px 10px;
+  border-radius:10px;
+  overflow:hidden;
+}
+.progress i{
+  display:block;
+  height:100%;
+  background:var(--primary);
+}
 
-        .view {
-            background: #11151c;
-            border: 1px solid #282d36;
-            color: white;
-        }
+.info{
+  margin:0 14px 10px;
+  background:#f7f7fc;
+  border-radius:12px;
+  padding:10px;
+  font-size:11px;
+  display:flex;
+  justify-content:space-between;
+  color:#777;
+}
 
-        section {
-            padding: 25px 18px;
-        }
+.left{
+  padding:0 14px 9px;
+  font-size:11px;
+  color:#666;
+}
 
-        .section-label {
-            color: #ff8100;
-            font-size: 11px;
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
+.actions{
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:8px;
+  padding:0 14px 14px;
+}
+.actions button{
+  height:43px;
+  border:0;
+  border-radius:22px;
+  font-weight:bold;
+}
+.prize{
+  background:#ecebff;
+  color:#5d55d9;
+}
+.join{
+  background:var(--primary);
+  color:#fff;
+}
+.full{
+  background:#bcb8e9!important;
+}
 
-        .section-title {
-            margin-top: 7px;
-            font-size: 25px;
-        }
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:13px;
+  outline:none;
+}
+.confirm{
+  width:100%;
+  margin-top:10px;
+  padding:14px;
+  border:0;
+  border-radius:13px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:bold;
+}
 
-        .empty {
-            margin-top: 20px;
-            padding: 35px 20px;
-            text-align: center;
-            border: 1px solid #20252e;
-            border-radius: 17px;
-            background: #10141b;
-        }
+.adminBtn{
+  display:none;
+  position:fixed;
+  right:16px;
+  bottom:92px;
+  z-index:25;
+  border:0;
+  background:#202438;
+  color:#fff;
+  border-radius:25px;
+  padding:11px 15px;
+  font-weight:bold;
+}
 
-        .empty-icon {
-            font-size: 35px;
-        }
-
-        .empty h3 {
-            margin-top: 12px;
-        }
-
-        .empty p {
-            margin-top: 7px;
-            color: #858d9b;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 10px;
-        }
-
-        .feature {
-            padding: 18px 10px;
-            text-align: center;
-            background: #10141b;
-            border: 1px solid #20252e;
-            border-radius: 15px;
-        }
-
-        .feature-icon {
-            font-size: 26px;
-        }
-
-        .feature h3 {
-            margin-top: 8px;
-            font-size: 15px;
-        }
-
-        .feature p {
-            margin-top: 5px;
-            color: #858d9b;
-            font-size: 12px;
-        }
-
-        footer {
-            margin-top: 30px;
-            padding: 30px 18px;
-            text-align: center;
-            border-top: 1px solid #20252e;
-            color: #858d9b;
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        @media(max-width:600px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.adminBox{
+  background:#f7f7ff;
+  border:1px solid #e4e4f2;
+  border-radius:15px;
+  padding:12px;
+  margin-top:10px;
+}
+.adminBox button{
+  margin:5px 4px 0 0;
+  padding:9px 11px;
+  border:0;
+  border-radius:10px;
+  background:#6258e8;
+  color:#fff;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            R
-        </div>
-
-        <div>
-            <h1>REAL</h1>
-            <small>TOURNAMENT</small>
-        </div>
-
-    </div>
-
-    <a href="#" class="login">
-        LOGIN
-    </a>
-
+  <div class="logo">REAL <span>TOURNAMENT</span></div>
+  <button class="profile" onclick="openLogin()">♙</button>
 </header>
 
+<section class="hero">
+  <h1>FREE FIRE ONLY</h1>
+  <p>PLAY • COMPETE • WIN</p>
+</section>
 
-<main>
+<section class="section">
+  <h2>Match Categories</h2>
+  <p>প্রতিটি Category-এর ভিতরে Free Match ও Paid Match থাকবে</p>
+</section>
 
-    <div class="hero">
+<div class="grid" id="cats"></div>
 
-        <span class="tag">
-            FREE FIRE ONLY
-        </span>
+<button class="adminBtn" id="adminBtn" onclick="openAdmin()">
+⚙ ADMIN
+</button>
 
-        <h2>
-            PLAY.<br>
-            COMPETE.<br>
-            <span>WIN.</span>
-        </h2>
+<nav class="bottom">
+  <div class="nav active">
+    <b>⌂</b>Home
+  </div>
+  <div class="nav" onclick="showAll()">
+    <b>🎮</b>Matches
+  </div>
+  <div class="nav">
+    <b>▣</b>Wallet
+  </div>
+  <div class="nav">
+    <b>🏆</b>Results
+  </div>
+  <div class="nav" onclick="openLogin()">
+    <b>♙</b>Profile
+  </div>
+</nav>
 
-        <p>
-            Join Free Fire tournaments,
-            compete with players and win rewards.
-        </p>
+<!-- CATEGORY -->
+<div class="modal" id="categoryModal">
+<div class="sheet">
 
-        <div class="buttons">
+<button class="close" onclick="closeM('categoryModal')">×</button>
 
-            <a href="#" class="btn join">
-                JOIN NOW
-            </a>
+<h2 id="catTitle"></h2>
 
-            <a href="#tournaments" class="btn view">
-                TOURNAMENTS
-            </a>
+<div class="sub">
+Free অথবা Paid match বেছে নাও
+</div>
 
-        </div>
+<div class="types">
 
-    </div>
+<button class="type sel"
+id="freeTab"
+onclick="renderMatches('free')">
 
+🆓
+<strong>FREE MATCH</strong>
+<small>Entry ৳0</small>
 
-    <section id="tournaments">
+</button>
 
-        <div class="section-label">
-            TOURNAMENTS
-        </div>
+<button class="type"
+id="paidTab"
+onclick="renderMatches('paid')">
 
-        <h2 class="section-title">
-            Upcoming Matches
-        </h2>
+💰
+<strong>PAID MATCH</strong>
+<small>Entry required</small>
 
-        <div class="empty">
+</button>
 
-            <div class="empty-icon">
-                ⚡
-            </div>
+</div>
 
-            <h3>
-                No tournaments yet
-            </h3>
+<div id="matches"></div>
 
-            <p>
-                New tournaments will appear here.
-            </p>
+</div>
+</div>
 
-        </div>
+<!-- JOIN -->
+<div class="modal" id="joinModal">
+<div class="sheet">
 
-    </section>
+<button class="close" onclick="closeM('joinModal')">×</button>
 
+<h2>Join Match</h2>
 
-    <section class="features">
+<div class="sub" id="joinSub"></div>
 
-        <div class="feature">
+<input
+id="gameName"
+placeholder="Enter your Free Fire Game Name"
+>
 
-            <div class="feature-icon">
-                🎮
-            </div>
+<button class="confirm" onclick="join()">
+JOIN MATCH
+</button>
 
-            <h3>
-                FREE FIRE
-            </h3>
+</div>
+</div>
 
-            <p>
-                Tournament platform
-            </p>
+<!-- LOGIN -->
+<div class="modal" id="loginModal">
+<div class="sheet">
 
-        </div>
+<button class="close" onclick="closeM('loginModal')">×</button>
 
+<h2>Player Login</h2>
 
-        <div class="feature">
+<div class="sub">
+Gmail + Password
+</div>
 
-            <div class="feature-icon">
-                🏆
-            </div>
+<input
+id="email"
+type="email"
+placeholder="Gmail / Email"
+>
 
-            <h3>
-                COMPETE
-            </h3>
+<br><br>
 
-            <p>
-                Play & compete
-            </p>
+<input
+id="password"
+type="password"
+placeholder="Password"
+>
 
-        </div>
+<button class="confirm" onclick="demoLogin()">
+LOGIN
+</button>
 
+</div>
+</div>
 
-        <div class="feature">
+<!-- ADMIN -->
+<div class="modal" id="adminModal">
+<div class="sheet">
 
-            <div class="feature-icon">
-                💰
-            </div>
+<button class="close" onclick="closeM('adminModal')">×</button>
 
-            <h3>
-                REWARDS
-            </h3>
+<h2>Admin Dashboard</h2>
 
-            <p>
-                Win rewards
-            </p>
+<div class="sub">
+Tournament Control
+</div>
 
-        </div>
+<div class="adminBox">
 
-    </section>
+<b>Match Control</b>
 
-</main>
+<br>
 
+<button onclick="alert('Add Match')">
++ Add Match
+</button>
 
-<footer>
+<button onclick="alert('Edit Match')">
+Edit Match
+</button>
 
-    <strong>
-        REAL TOURNAMENT
-    </strong>
+<button onclick="alert('Delete Match')">
+Delete
+</button>
 
-    <p>
-        Free Fire Tournament Platform
-    </p>
+</div>
 
-</footer>
+<div class="adminBox">
+
+<b>Players</b>
+
+<br>
+
+<button onclick="alert('Joined Players')">
+Joined Players
+</button>
+
+<button onclick="alert('Block / Unblock')">
+Block
+</button>
+
+</div>
+
+<div class="adminBox">
+
+<b>Results</b>
+
+<br>
+
+<button onclick="alert('Winner Control')">
+Winner
+</button>
+
+<button onclick="alert('Prize Control')">
+Prize
+</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+const categories=[
+
+["BR MATCH","🔥","Battle Royale"],
+
+["BR SURVIVAL","⚡","Survival"],
+
+["CLASH SQUAD","🎯","Squad vs Squad"],
+
+["KATANA VS KATANA","⚔️","Katana Battle"],
+
+["CS | 2V2","👥","2 vs 2"],
+
+["LONE WOLF","🐺","Solo Battle"],
+
+["LOSE TO WIN","🏁","Special Challenge"],
+
+["LONE WOLF 1V1","🥊","1 vs 1"]
+
+];
+
+const db={};
+
+categories.forEach(c=>{
+
+db[c[0]]={
+
+free:[{
+
+name:c[0]+" FREE #01",
+
+entry:"FREE",
+
+prize:"৳0",
+
+cur:18,
+
+max:48,
+
+time:"2:40 PM",
+
+code:"#816127"
+
+}],
+
+paid:[{
+
+name:c[0]+" PRO #01",
+
+entry:"৳10",
+
+prize:"৳400",
+
+cur:41,
+
+max:48,
+
+time:"3:10 PM",
+
+code:"#430741"
+
+}]
+
+};
+
+});
+
+let selected="";
+let type="free";
+let selectedMatch=null;
+
+const cats=document.getElementById("cats");
+
+categories.forEach(c=>{
+
+cats.innerHTML+=`
+
+<button class="cat"
+onclick="openCat('${c[0]}')">
+
+<div class="caticon">
+${c[1]}
+</div>
+
+<h3>${c[0]}</h3>
+
+<p>${c[2]}</p>
+
+<span class="pill">
+FREE + PAID
+</span>
+
+</button>
+
+`;
+
+});
+
+function openCat(n){
+
+selected=n;
+
+document.getElementById("catTitle")
+.textContent=n;
+
+document.getElementById("categoryModal")
+.style.display="flex";
+
+renderMatches("free");
+
+}
+
+function renderMatches(t){
+
+type=t;
+
+document.getElementById("freeTab")
+.classList.toggle("sel",t==="free");
+
+document.getElementById("paidTab")
+.classList.toggle("sel",t==="paid");
+
+let arr=db[selected][t];
+
+document.getElementById("matches").innerHTML=
+
+arr.map((m,i)=>{
+
+let left=m.max-m.cur;
+
+let full=left<=0;
+
+let p=Math.round(m.cur/m.max*100);
+
+return `
+
+<div class="match">
+
+<div class="matchtop">
+
+<span class="status">
+UPCOMING
+</span>
+
+<span class="matchcode">
+${m.code}
+</span>
+
+<div>
+
+<div class="matchtitle">
+${m.name} | ${m.time}
+</div>
+
+<small>
+🎮 Mobile • Bermuda
+</small>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div>
+<b>${m.entry}</b>
+<small>ENTRY</small>
+</div>
+
+<div>
+<b>${m.prize}</b>
+<small>PRIZE POOL</small>
+</div>
+
+<div>
+<b>${m.cur}/${m.max}</b>
+<small>PLAYERS</small>
+</div>
+
+</div>
+
+<div class="progress">
+
+<i style="width:${p}%"></i>
+
+</div>
+
+<div class="info">
+
+<span>
+📅 06 Oct 2026
+</span>
+
+<span>
+◷ ${m.time}
+</span>
+
+</div>
+
+<div class="left">
+
+👥
+<b>${m.cur}/${m.max} Players</b>
+—
+${left} Players Left
+
+</div>
+
+<div class="actions">
+
+<button
+class="prize"
+onclick="alert('Prize: ${m.prize}')">
+
+🏆 Prizes
+
+</button>
+
+<button
+class="join ${full?'full':''}"
+${full?'disabled':''}
+onclick="openJoin(${i})">
+
+${full?'🔒 Match Full':'↪ JOIN NOW'}
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function openJoin(i){
+
+selectedMatch=db[selected][type][i];
+
+document.getElementById("joinSub")
+.textContent=
+selectedMatch.name+
+" • "+
+selectedMatch.entry;
+
+document.getElementById("joinModal")
+.style.display="flex";
+
+setTimeout(()=>{
+
+document.getElementById("gameName").focus();
+
+},100);
+
+}
+
+function join(){
+
+let n=document
+.getElementById("gameName")
+.value
+.trim();
+
+if(!n){
+
+alert("Game Name দিন");
+
+return;
+
+}
+
+selectedMatch.cur++;
+
+alert(
+"Demo Join Successful!\n\nGame Name: "+
+n
+);
+
+document.getElementById("gameName").value="";
+
+closeM("joinModal");
+
+renderMatches(type);
+
+}
+
+function showAll(){
+
+openCat(categories[0][0]);
+
+}
+
+function openLogin(){
+
+document.getElementById("loginModal")
+.style.display="flex";
+
+}
+
+function demoLogin(){
+
+let email=
+document.getElementById("email").value;
+
+let password=
+document.getElementById("password").value;
+
+if(!email || !password){
+
+alert("Email এবং Password দিন");
+
+return;
+
+}
+
+alert("Demo Login Successful");
+
+closeM("loginModal");
+
+}
+
+function openAdmin(){
+
+document.getElementById("adminModal")
+.style.display="flex";
+
+}
+
+function closeM(id){
+
+document.getElementById(id)
+.style.display="none";
+
+}
+
+</script>
 
 </body>
-  </html>
+</html>
