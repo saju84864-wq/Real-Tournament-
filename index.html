@@ -8,378 +8,400 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#6258e8;
-  --bg:#f5f6fb;
-  --text:#25283a;
-  --muted:#858896;
+--primary:#6258e8;
+--secondary:#ff4f6d;
+--bg:#f5f6fb;
+--text:#25283a;
+--muted:#858896;
 }
 body{
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  padding-bottom:90px;
+font-family:Arial,sans-serif;
+background:var(--bg);
+color:var(--text);
+padding-bottom:95px;
 }
 button,input{font:inherit}
 button{cursor:pointer}
 
 header{
-  height:68px;
-  background:#fff;
-  border-bottom:1px solid #e6e7ee;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 16px;
-  position:sticky;
-  top:0;
-  z-index:10;
+height:68px;
+background:#fff;
+border-bottom:1px solid #e6e7ee;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 16px;
+position:sticky;
+top:0;
+z-index:10;
 }
 .logo{
-  font-weight:900;
-  font-size:20px;
-  color:var(--primary);
+font-weight:900;
+font-size:20px;
+color:var(--primary);
 }
-.logo span{color:#ff4f6d}
-
+.logo span{color:var(--secondary)}
 .profile{
-  width:42px;
-  height:42px;
-  border:1px solid #ddd;
-  border-radius:50%;
-  background:#fff;
-  font-size:21px;
+width:42px;
+height:42px;
+border:1px solid #ddd;
+border-radius:50%;
+background:#fff;
+font-size:21px;
 }
 
 .hero{
-  margin:14px 16px;
-  padding:22px 18px;
-  border-radius:22px;
-  color:#fff;
-  background:linear-gradient(135deg,#5b52e2,#9060f4);
-  box-shadow:0 12px 28px #6359e633;
+margin:14px 16px;
+padding:22px 18px;
+border-radius:22px;
+color:#fff;
+background:linear-gradient(135deg,#5b52e2,#9060f4);
+box-shadow:0 12px 28px #6359e633;
 }
-.hero h1{
-  font-size:25px;
-  margin-bottom:7px;
-}
-.hero p{
-  font-size:12px;
-  opacity:.9;
-}
+.hero h1{font-size:25px;margin-bottom:7px}
+.hero p{font-size:12px;opacity:.9}
 
-.section{
-  padding:7px 16px 10px;
-}
+.section{padding:7px 16px 10px}
 .section h2{font-size:20px}
 .section p{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:4px;
+font-size:12px;
+color:var(--muted);
+margin-top:4px;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  padding:0 16px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+padding:0 16px;
 }
-
 .cat{
-  background:#fff;
-  border:1px solid #e3e4eb;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 5px 16px #0000000a;
-  text-align:left;
+background:#fff;
+border:1px solid #e3e4eb;
+border-radius:18px;
+padding:14px;
+box-shadow:0 5px 16px #0000000a;
+text-align:left;
 }
 .cat:active{transform:scale(.98)}
-
 .caticon{
-  height:55px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#eeeefe,#f7ebff);
-  display:grid;
-  place-items:center;
-  font-size:28px;
-  margin-bottom:10px;
+height:55px;
+border-radius:14px;
+background:linear-gradient(135deg,#eeeefe,#f7ebff);
+display:grid;
+place-items:center;
+font-size:28px;
+margin-bottom:10px;
 }
 .cat h3{font-size:14px}
 .cat p{
-  font-size:10px;
-  color:#888;
-  margin-top:4px;
+font-size:10px;
+color:#888;
+margin-top:4px;
 }
 .pill{
-  display:inline-block;
-  margin-top:9px;
-  padding:5px 8px;
-  border-radius:20px;
-  background:#eaf8ef;
-  color:#15934b;
-  font-size:9px;
-  font-weight:bold;
+display:inline-block;
+margin-top:9px;
+padding:5px 8px;
+border-radius:20px;
+background:#eaf8ef;
+color:#15934b;
+font-size:9px;
+font-weight:bold;
 }
 
 .bottom{
-  position:fixed;
-  z-index:30;
-  left:12px;
-  right:12px;
-  bottom:9px;
-  height:68px;
-  background:#fff;
-  border:1px solid #e4e5ec;
-  border-radius:25px;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  box-shadow:0 8px 28px #0002;
+position:fixed;
+z-index:30;
+left:12px;
+right:12px;
+bottom:9px;
+height:68px;
+background:#fff;
+border:1px solid #e4e5ec;
+border-radius:25px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+box-shadow:0 8px 28px #0002;
 }
 .nav{
-  text-align:center;
-  color:#777;
-  font-size:10px;
+text-align:center;
+color:#777;
+font-size:10px;
 }
 .nav b{
-  display:block;
-  font-size:20px;
-  margin-bottom:4px;
+display:block;
+font-size:20px;
+margin-bottom:4px;
 }
 .nav.active{
-  color:var(--primary);
-  font-weight:bold;
+color:var(--primary);
+font-weight:bold;
 }
 
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:50;
-  align-items:flex-end;
+display:none;
+position:fixed;
+inset:0;
+background:#0008;
+z-index:50;
+align-items:flex-end;
 }
 .sheet{
-  width:100%;
-  max-height:90vh;
-  overflow:auto;
-  background:#fff;
-  border-radius:25px 25px 0 0;
-  padding:18px 16px;
+width:100%;
+max-height:90vh;
+overflow:auto;
+background:#fff;
+border-radius:25px 25px 0 0;
+padding:18px 16px;
 }
 .close{
-  float:right;
-  width:34px;
-  height:34px;
-  border:0;
-  border-radius:50%;
-  background:#eee;
-  font-size:20px;
+float:right;
+width:34px;
+height:34px;
+border:0;
+border-radius:50%;
+background:#eee;
+font-size:20px;
 }
 .sheet h2{
-  font-size:20px;
-  margin:5px 0;
+font-size:20px;
+margin:5px 0;
 }
 .sub{
-  font-size:12px;
-  color:#888;
-  margin-bottom:14px;
+font-size:12px;
+color:#888;
+margin-bottom:14px;
 }
 
 .types{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
 }
 .type{
-  padding:13px;
-  border:2px solid #eee;
-  border-radius:14px;
-  background:#fff;
-  text-align:left;
+padding:13px;
+border:2px solid #eee;
+border-radius:14px;
+background:#fff;
+text-align:left;
 }
 .type.sel{
-  border-color:var(--primary);
-  background:#f4f2ff;
+border-color:var(--primary);
+background:#f4f2ff;
 }
 .type strong{
-  display:block;
-  margin-top:3px;
+display:block;
+margin-top:3px;
 }
 .type small{color:#888}
 
 .match{
-  border:1px solid #e1e2ea;
-  border-radius:17px;
-  overflow:hidden;
-  margin-top:11px;
-  background:#fff;
+border:1px solid #e1e2ea;
+border-radius:17px;
+overflow:hidden;
+margin-top:11px;
+background:#fff;
 }
-
 .matchtop{
-  height:170px;
-  background:
-    linear-gradient(135deg,#263b74,#745be8);
-  position:relative;
-  color:#fff;
-  padding:15px;
-  display:flex;
-  align-items:flex-end;
+height:170px;
+background:linear-gradient(135deg,#263b74,#745be8);
+position:relative;
+color:#fff;
+padding:15px;
+display:flex;
+align-items:flex-end;
 }
 .matchtop:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent,#10152ccc);
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(transparent,#10152ccc);
 }
-
 .matchtop>*{
-  position:relative;
-  z-index:1;
+position:relative;
+z-index:1;
 }
-
 .status{
-  position:absolute;
-  top:12px;
-  left:12px;
-  padding:6px 9px;
-  border-radius:15px;
-  background:#20a86b;
-  font-size:9px;
-  font-weight:bold;
+position:absolute;
+top:12px;
+left:12px;
+padding:6px 9px;
+border-radius:15px;
+background:#20a86b;
+font-size:9px;
+font-weight:bold;
 }
 .matchcode{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#27364ddd;
-  padding:6px 9px;
-  border-radius:15px;
-  font-size:9px;
+position:absolute;
+top:12px;
+right:12px;
+background:#27364ddd;
+padding:6px 9px;
+border-radius:15px;
+font-size:9px;
 }
 .matchtitle{
-  font-size:18px;
-  font-weight:bold;
+font-size:18px;
+font-weight:bold;
 }
 
 .stats{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  text-align:center;
-  padding:13px 5px 7px;
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+text-align:center;
+padding:13px 5px 7px;
 }
-.stats div{
-  border-right:1px solid #eee;
-}
+.stats div{border-right:1px solid #eee}
 .stats div:last-child{border:0}
 .stats b{
-  display:block;
-  font-size:15px;
+display:block;
+font-size:15px;
 }
 .stats small{
-  color:#999;
-  font-size:9px;
+color:#999;
+font-size:9px;
 }
 
 .progress{
-  height:6px;
-  background:#eceef4;
-  margin:2px 14px 10px;
-  border-radius:10px;
-  overflow:hidden;
+height:6px;
+background:#eceef4;
+margin:2px 14px 10px;
+border-radius:10px;
+overflow:hidden;
 }
 .progress i{
-  display:block;
-  height:100%;
-  background:var(--primary);
+display:block;
+height:100%;
+background:var(--primary);
 }
 
 .info{
-  margin:0 14px 10px;
-  background:#f7f7fc;
-  border-radius:12px;
-  padding:10px;
-  font-size:11px;
-  display:flex;
-  justify-content:space-between;
-  color:#777;
+margin:0 14px 10px;
+background:#f7f7fc;
+border-radius:12px;
+padding:10px;
+font-size:11px;
+display:flex;
+justify-content:space-between;
+color:#777;
 }
 
 .left{
-  padding:0 14px 9px;
-  font-size:11px;
-  color:#666;
+padding:0 14px 9px;
+font-size:11px;
+color:#666;
 }
 
 .actions{
-  display:grid;
-  grid-template-columns:105px 1fr;
-  gap:8px;
-  padding:0 14px 14px;
+display:grid;
+grid-template-columns:105px 1fr;
+gap:8px;
+padding:0 14px 14px;
 }
 .actions button{
-  height:43px;
-  border:0;
-  border-radius:22px;
-  font-weight:bold;
+height:43px;
+border:0;
+border-radius:22px;
+font-weight:bold;
 }
 .prize{
-  background:#ecebff;
-  color:#5d55d9;
+background:#ecebff;
+color:#5d55d9;
 }
 .join{
-  background:var(--primary);
-  color:#fff;
+background:var(--primary);
+color:#fff;
 }
 .full{
-  background:#bcb8e9!important;
+background:#bcb8e9!important;
 }
 
 input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  outline:none;
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:13px;
+outline:none;
 }
+input:focus{border-color:var(--primary)}
+
 .confirm{
-  width:100%;
-  margin-top:10px;
-  padding:14px;
-  border:0;
-  border-radius:13px;
-  background:var(--primary);
-  color:#fff;
-  font-weight:bold;
+width:100%;
+margin-top:10px;
+padding:14px;
+border:0;
+border-radius:13px;
+background:var(--primary);
+color:#fff;
+font-weight:bold;
+}
+
+.secondaryBtn{
+width:100%;
+margin-top:8px;
+padding:13px;
+border:1px solid #ddd;
+border-radius:13px;
+background:#fff;
+font-weight:bold;
 }
 
 .adminBtn{
-  display:none;
-  position:fixed;
-  right:16px;
-  bottom:92px;
-  z-index:25;
-  border:0;
-  background:#202438;
-  color:#fff;
-  border-radius:25px;
-  padding:11px 15px;
-  font-weight:bold;
+display:none;
+position:fixed;
+right:16px;
+bottom:92px;
+z-index:25;
+border:0;
+background:#202438;
+color:#fff;
+border-radius:25px;
+padding:11px 15px;
+font-weight:bold;
 }
 
 .adminBox{
-  background:#f7f7ff;
-  border:1px solid #e4e4f2;
-  border-radius:15px;
-  padding:12px;
-  margin-top:10px;
+background:#f7f7ff;
+border:1px solid #e4e4f2;
+border-radius:15px;
+padding:12px;
+margin-top:10px;
 }
 .adminBox button{
-  margin:5px 4px 0 0;
-  padding:9px 11px;
-  border:0;
-  border-radius:10px;
-  background:#6258e8;
-  color:#fff;
+margin:5px 4px 0 0;
+padding:9px 11px;
+border:0;
+border-radius:10px;
+background:#6258e8;
+color:#fff;
+}
+
+.profileCard{
+background:linear-gradient(135deg,#6258e8,#9060f4);
+color:white;
+padding:18px;
+border-radius:18px;
+margin-bottom:14px;
+}
+.profileCard b{
+font-size:18px;
+}
+.balance{
+margin-top:12px;
+background:#ffffff22;
+padding:12px;
+border-radius:12px;
+}
+
+.empty{
+padding:20px;
+text-align:center;
+color:#888;
+background:#f7f7fb;
+border-radius:15px;
+margin-top:12px;
 }
 </style>
 </head>
@@ -387,18 +409,19 @@ input{
 <body>
 
 <header>
-  <div class="logo">REAL <span>TOURNAMENT</span></div>
-  <button class="profile" onclick="openLogin()">♙</button>
+<div class="logo">REAL <span>TOURNAMENT</span></div>
+
+<button class="profile" onclick="openLogin()">♙</button>
 </header>
 
 <section class="hero">
-  <h1>FREE FIRE ONLY</h1>
-  <p>PLAY • COMPETE • WIN</p>
+<h1>FREE FIRE ONLY</h1>
+<p>PLAY • COMPETE • WIN</p>
 </section>
 
 <section class="section">
-  <h2>Match Categories</h2>
-  <p>প্রতিটি Category-এর ভিতরে Free Match ও Paid Match থাকবে</p>
+<h2>Match Categories</h2>
+<p>Free Match এবং Paid Match খেলুন</p>
 </section>
 
 <div class="grid" id="cats"></div>
@@ -408,25 +431,34 @@ input{
 </button>
 
 <nav class="bottom">
-  <div class="nav active">
-    <b>⌂</b>Home
-  </div>
-  <div class="nav" onclick="showAll()">
-    <b>🎮</b>Matches
-  </div>
-  <div class="nav">
-    <b>▣</b>Wallet
-  </div>
-  <div class="nav">
-    <b>🏆</b>Results
-  </div>
-  <div class="nav" onclick="openLogin()">
-    <b>♙</b>Profile
-  </div>
+
+<div class="nav active">
+<b>⌂</b>Home
+</div>
+
+<div class="nav" onclick="showAll()">
+<b>🎮</b>Matches
+</div>
+
+<div class="nav" onclick="openProfile()">
+<b>▣</b>Wallet
+</div>
+
+<div class="nav" onclick="alert('Results will appear here')">
+<b>🏆</b>Results
+</div>
+
+<div class="nav" onclick="openLogin()">
+<b>♙</b>Profile
+</div>
+
 </nav>
 
+
 <!-- CATEGORY -->
+
 <div class="modal" id="categoryModal">
+
 <div class="sheet">
 
 <button class="close" onclick="closeM('categoryModal')">×</button>
@@ -466,8 +498,11 @@ onclick="renderMatches('paid')">
 </div>
 </div>
 
+
 <!-- JOIN -->
+
 <div class="modal" id="joinModal">
+
 <div class="sheet">
 
 <button class="close" onclick="closeM('joinModal')">×</button>
@@ -476,10 +511,8 @@ onclick="renderMatches('paid')">
 
 <div class="sub" id="joinSub"></div>
 
-<input
-id="gameName"
-placeholder="Enter your Free Fire Game Name"
->
+<input id="gameName"
+placeholder="Enter your Free Fire Game Name">
 
 <button class="confirm" onclick="join()">
 JOIN MATCH
@@ -488,8 +521,11 @@ JOIN MATCH
 </div>
 </div>
 
+
 <!-- LOGIN -->
+
 <div class="modal" id="loginModal">
+
 <div class="sheet">
 
 <button class="close" onclick="closeM('loginModal')">×</button>
@@ -497,32 +533,69 @@ JOIN MATCH
 <h2>Player Login</h2>
 
 <div class="sub">
-Gmail + Password
+Firebase Account Login
 </div>
 
-<input
-id="email"
+<input id="email"
 type="email"
-placeholder="Gmail / Email"
->
+placeholder="Gmail / Email">
 
 <br><br>
 
-<input
-id="password"
+<input id="password"
 type="password"
-placeholder="Password"
->
+placeholder="Password">
 
 <button class="confirm" onclick="demoLogin()">
 LOGIN
 </button>
 
+<button class="secondaryBtn" onclick="createAccount()">
+CREATE ACCOUNT
+</button>
+
 </div>
 </div>
 
+
+<!-- PROFILE -->
+
+<div class="modal" id="profileModal">
+
+<div class="sheet">
+
+<button class="close" onclick="closeM('profileModal')">×</button>
+
+<h2>My Profile</h2>
+
+<div class="sub">REAL TOURNAMENT Player</div>
+
+<div class="profileCard">
+
+<b id="profileEmail">Not Logged In</b>
+
+<div class="balance">
+💰 Balance: ৳<span id="profileBalance">0</span>
+</div>
+
+</div>
+
+<button class="confirm" onclick="openLogin()">
+LOGIN
+</button>
+
+<button class="secondaryBtn" onclick="logoutUser()">
+LOGOUT
+</button>
+
+</div>
+</div>
+
+
 <!-- ADMIN -->
+
 <div class="modal" id="adminModal">
+
 <div class="sheet">
 
 <button class="close" onclick="closeM('adminModal')">×</button>
@@ -535,20 +608,26 @@ Tournament Control
 
 <div class="adminBox">
 
+<b>Account</b>
+
+<p id="adminUser" style="margin-top:7px;color:#777">
+Checking...
+</p>
+
+</div>
+
+<div class="adminBox">
+
 <b>Match Control</b>
 
 <br>
 
-<button onclick="alert('Add Match')">
+<button onclick="alert('Match control is connected to Firebase. Add/edit forms can be added next.')">
 + Add Match
 </button>
 
-<button onclick="alert('Edit Match')">
-Edit Match
-</button>
-
-<button onclick="alert('Delete Match')">
-Delete
+<button onclick="loadFirebaseMatches()">
+Refresh Matches
 </button>
 
 </div>
@@ -559,12 +638,8 @@ Delete
 
 <br>
 
-<button onclick="alert('Joined Players')">
+<button onclick="showPlayers()">
 Joined Players
-</button>
-
-<button onclick="alert('Block / Unblock')">
-Block
 </button>
 
 </div>
@@ -575,37 +650,33 @@ Block
 
 <br>
 
-<button onclick="alert('Winner Control')">
+<button onclick="alert('Winner control ready for Firebase data.')">
 Winner
 </button>
 
-<button onclick="alert('Prize Control')">
+<button onclick="alert('Prize control ready.')">
 Prize
 </button>
 
 </div>
 
+<div id="adminPlayers"></div>
+
 </div>
 </div>
+
 
 <script>
 
 const categories=[
 
 ["BR MATCH","🔥","Battle Royale"],
-
 ["BR SURVIVAL","⚡","Survival"],
-
 ["CLASH SQUAD","🎯","Squad vs Squad"],
-
 ["KATANA VS KATANA","⚔️","Katana Battle"],
-
 ["CS | 2V2","👥","2 vs 2"],
-
 ["LONE WOLF","🐺","Solo Battle"],
-
 ["LOSE TO WIN","🏁","Special Challenge"],
-
 ["LONE WOLF 1V1","🥊","1 vs 1"]
 
 ];
@@ -615,46 +686,28 @@ const db={};
 categories.forEach(c=>{
 
 db[c[0]]={
-
 free:[{
-
 name:c[0]+" FREE #01",
-
 entry:"FREE",
-
 prize:"৳0",
-
-cur:18,
-
+cur:0,
 max:48,
-
 time:"2:40 PM",
-
 code:"#816127"
-
 }],
-
 paid:[{
-
 name:c[0]+" PRO #01",
-
 entry:"৳10",
-
 prize:"৳400",
-
-cur:41,
-
+cur:0,
 max:48,
-
 time:"3:10 PM",
-
 code:"#430741"
-
 }]
-
 };
 
 });
+
 
 let selected="";
 let type="free";
@@ -669,9 +722,7 @@ cats.innerHTML+=`
 <button class="cat"
 onclick="openCat('${c[0]}')">
 
-<div class="caticon">
-${c[1]}
-</div>
+<div class="caticon">${c[1]}</div>
 
 <h3>${c[0]}</h3>
 
@@ -687,19 +738,21 @@ FREE + PAID
 
 });
 
+
 function openCat(n){
 
 selected=n;
 
-document.getElementById("catTitle")
-.textContent=n;
+document.getElementById("catTitle").textContent=n;
 
-document.getElementById("categoryModal")
-.style.display="flex";
+document.getElementById("categoryModal").style.display="flex";
 
 renderMatches("free");
 
+loadFirebaseMatches();
+
 }
+
 
 function renderMatches(t){
 
@@ -711,17 +764,25 @@ document.getElementById("freeTab")
 document.getElementById("paidTab")
 .classList.toggle("sel",t==="paid");
 
-let arr=db[selected][t];
+let arr=db[selected][t] || [];
+
+if(!arr.length){
+
+document.getElementById("matches").innerHTML=
+`<div class="empty">এই Category-তে এখন কোনো ${t} match নেই।</div>`;
+
+return;
+}
 
 document.getElementById("matches").innerHTML=
 
 arr.map((m,i)=>{
 
-let left=m.max-m.cur;
+let left=Math.max(0,m.max-m.cur);
 
 let full=left<=0;
 
-let p=Math.round(m.cur/m.max*100);
+let p=Math.min(100,Math.round(m.cur/m.max*100));
 
 return `
 
@@ -734,7 +795,7 @@ UPCOMING
 </span>
 
 <span class="matchcode">
-${m.code}
+${m.code || "#REAL"}
 </span>
 
 <div>
@@ -771,15 +832,13 @@ ${m.name} | ${m.time}
 </div>
 
 <div class="progress">
-
 <i style="width:${p}%"></i>
-
 </div>
 
 <div class="info">
 
 <span>
-📅 06 Oct 2026
+📅 ${m.date || "06 Oct 2026"}
 </span>
 
 <span>
@@ -790,8 +849,7 @@ ${m.name} | ${m.time}
 
 <div class="left">
 
-👥
-<b>${m.cur}/${m.max} Players</b>
+👥 <b>${m.cur}/${m.max} Players</b>
 —
 ${left} Players Left
 
@@ -799,12 +857,9 @@ ${left} Players Left
 
 <div class="actions">
 
-<button
-class="prize"
+<button class="prize"
 onclick="alert('Prize: ${m.prize}')">
-
 🏆 Prizes
-
 </button>
 
 <button
@@ -826,48 +881,69 @@ ${full?'🔒 Match Full':'↪ JOIN NOW'}
 
 }
 
+
 function openJoin(i){
 
 selectedMatch=db[selected][type][i];
 
-document.getElementById("joinSub")
-.textContent=
-selectedMatch.name+
-" • "+
-selectedMatch.entry;
+if(!selectedMatch)return;
 
-document.getElementById("joinModal")
-.style.display="flex";
+if(!window.currentUser){
+
+alert("আগে Login করুন");
+
+openLogin();
+
+return;
+}
+
+document.getElementById("joinSub").textContent=
+selectedMatch.name+" • "+selectedMatch.entry;
+
+document.getElementById("joinModal").style.display="flex";
 
 setTimeout(()=>{
-
 document.getElementById("gameName").focus();
-
 },100);
 
 }
 
-function join(){
 
-let n=document
-.getElementById("gameName")
-.value
-.trim();
+async function join(){
+
+let n=document.getElementById("gameName").value.trim();
 
 if(!n){
-
 alert("Game Name দিন");
-
 return;
-
 }
+
+if(!window.currentUser){
+alert("আগে Login করুন");
+openLogin();
+return;
+}
+
+if(!selectedMatch)return;
+
+try{
+
+if(window.firebaseJoin){
+
+await window.firebaseJoin(
+selectedMatch,
+selected,
+type,
+n
+);
+
+}else{
 
 selectedMatch.cur++;
 
-alert(
-"Demo Join Successful!\n\nGame Name: "+
-n
-);
+alert("Joined Successfully!");
+
+}
 
 document.getElementById("gameName").value="";
 
@@ -875,28 +951,82 @@ closeM("joinModal");
 
 renderMatches(type);
 
+}catch(e){
+
+alert("Join Failed: "+e.message);
+
 }
+
+}
+
 
 function showAll(){
-
 openCat(categories[0][0]);
-
 }
+
 
 function openLogin(){
+document.getElementById("loginModal").style.display="flex";
+}
 
-document.getElementById("loginModal")
-.style.display="flex";
+
+function openProfile(){
+
+document.getElementById("profileModal").style.display="flex";
+
+if(window.currentUser){
+
+document.getElementById("profileEmail").textContent=
+window.currentUser.email;
+
+}else{
+
+document.getElementById("profileEmail").textContent=
+"Not Logged In";
 
 }
 
-function demoLogin(){
+}
 
-let email=
-document.getElementById("email").value;
 
-let password=
-document.getElementById("password").value;
+function openAdmin(){
+
+if(!window.currentUser){
+
+alert("Admin login required");
+
+openLogin();
+
+return;
+
+}
+
+if(!window.isAdmin){
+
+alert("Admin access নেই");
+
+return;
+
+}
+
+document.getElementById("adminModal").style.display="flex";
+
+document.getElementById("adminUser").textContent=
+window.currentUser.email;
+
+}
+
+
+function closeM(id){
+document.getElementById(id).style.display="none";
+}
+
+
+async function createAccount(){
+
+let email=document.getElementById("email").value.trim();
+
+let password=document.getElementById("password").value;
 
 if(!email || !password){
 
@@ -906,75 +1036,469 @@ return;
 
 }
 
-alert("Demo Login Successful");
+if(password.length<6){
+
+alert("Password কমপক্ষে 6 character হতে হবে");
+
+return;
+
+}
+
+if(!window.firebaseCreate){
+
+alert("Firebase এখনো load হয়নি");
+
+return;
+
+}
+
+try{
+
+await window.firebaseCreate(email,password);
+
+alert("Account Created Successfully!");
 
 closeM("loginModal");
 
-}
+}catch(e){
 
-function openAdmin(){
-
-document.getElementById("adminModal")
-.style.display="flex";
+alert("Account Create Failed: "+e.message);
 
 }
 
-function closeM(id){
+}
 
-document.getElementById(id)
-.style.display="none";
+
+async function logoutUser(){
+
+if(window.firebaseLogout){
+
+await window.firebaseLogout();
+
+}
+
+closeM("profileModal");
+
+}
+
+
+async function showPlayers(){
+
+if(!window.firebaseGetPlayers){
+
+alert("Firebase loading...");
+
+return;
+
+}
+
+try{
+
+let players=await window.firebaseGetPlayers();
+
+if(!players.length){
+
+document.getElementById("adminPlayers").innerHTML=
+`<div class="empty">কোনো joined player নেই</div>`;
+
+return;
+
+}
+
+document.getElementById("adminPlayers").innerHTML=
+players.map(p=>`
+
+<div class="adminBox">
+
+<b>${p.gameName || "Player"}</b>
+
+<br>
+
+<small>${p.email || ""}</small>
+
+<br>
+
+<small>${p.tournament || ""}</small>
+
+</div>
+
+`).join("");
+
+}catch(e){
+
+alert("Players Load Failed: "+e.message);
+
+}
+
+}
+
+
+async function loadFirebaseMatches(){
+
+if(window.firebaseLoadMatches){
+
+await window.firebaseLoadMatches();
+
+}
+
+if(selected)renderMatches(type);
 
 }
 
 </script>
 
+
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyCWV2-_6Rvjs1fxhyf6nxqF2s8bH6fJuX4",
-    authDomain: "real-tournament-70194.firebaseapp.com",
-    projectId: "real-tournament-70194",
-    storageBucket: "real-tournament-70194.firebasestorage.app",
-    messagingSenderId: "201705667489",
-    appId: "1:201705667489:web:bbda4376c3bcf1fcf3a9e0",
-    measurementId: "G-EQGPDC0GLY"
-  };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-const auth = getAuth(app);
-window.demoLogin = async function(){
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+import {
+getAuth,
+signInWithEmailAndPassword,
+createUserWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-  if(!email || !password){
-    alert("Email এবং Password দিন");
-    return;
-  }
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc,
+collection,
+getDocs,
+addDoc,
+runTransaction
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-  try {
 
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+const firebaseConfig={
 
-    alert("Login Successful!");
+apiKey:"AIzaSyCWV2-_6Rvjs1fxhyf6nxqF2s8bH6fJuX4",
 
-    closeM("loginModal");
+authDomain:"real-tournament-70194.firebaseapp.com",
 
-    console.log("Logged in:", userCredential.user.email);
+projectId:"real-tournament-70194",
 
-  } catch(error) {
+storageBucket:"real-tournament-70194.firebasestorage.app",
 
-    alert("Login Failed: " + error.message);
+messagingSenderId:"201705667489",
 
-  }
+appId:"1:201705667489:web:bbda4376c3bcf1fcf3a9e0",
 
-};  console.log("Firebase connected!");
-</script></body>
-</html>
+measurementId:"G-EQGPDC0GLY"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const firestore=getFirestore(app);
+
+
+window.currentUser=null;
+window.isAdmin=false;
+
+
+onAuthStateChanged(auth,async user=>{
+
+window.currentUser=user;
+
+if(user){
+
+try{
+
+const ref=doc(firestore,"users",user.uid);
+
+const snap=await getDoc(ref);
+
+if(snap.exists()){
+
+const data=snap.data();
+
+window.isAdmin=data.role==="admin";
+
+document.getElementById("profileBalance").textContent=
+data.balance || 0;
+
+}else{
+
+await setDoc(ref,{
+
+uid:user.uid,
+
+email:user.email,
+
+name:"",
+
+balance:0,
+
+role:"player",
+
+createdAt:new Date().toISOString()
+
+},{merge:true});
+
+window.isAdmin=false;
+
+}
+
+}catch(e){
+
+console.log("User profile:",e.message);
+
+}
+
+}else{
+
+window.isAdmin=false;
+
+}
+
+document.getElementById("adminBtn").style.display=
+window.isAdmin ? "block" : "none";
+
+});
+
+
+window.demoLogin=async function(){
+
+const email=document.getElementById("email").value.trim();
+
+const password=document.getElementById("password").value;
+
+if(!email || !password){
+
+alert("Email এবং Password দিন");
+
+return;
+
+}
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+alert("Login Successful!");
+
+closeM("loginModal");
+
+}catch(error){
+
+alert("Login Failed: "+error.message);
+
+}
+
+};
+
+
+window.firebaseCreate=async function(email,password){
+
+const cred=await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+await setDoc(
+doc(firestore,"users",cred.user.uid),
+{
+uid:cred.user.uid,
+email:email,
+name:"",
+balance:0,
+role:"player",
+createdAt:new Date().toISOString()
+},
+{merge:true}
+);
+
+};
+
+
+window.firebaseLogout=async function(){
+
+await signOut(auth);
+
+};
+
+
+window.firebaseJoin=async function(match,category,matchType,gameName){
+
+const user=auth.currentUser;
+
+if(!user){
+
+throw new Error("Login required");
+
+}
+
+const userRef=doc(firestore,"users",user.uid);
+
+const userSnap=await getDoc(userRef);
+
+let userData=userSnap.exists()
+?userSnap.data()
+:{};
+
+const entry=parseInt(
+String(match.entry).replace(/[^\d]/g,"")
+)||0;
+
+const tournamentId=
+match.firebaseId ||
+(category+"_"+matchType+"_"+match.code)
+.replace(/[^a-zA-Z0-9_-]/g,"_");
+
+const tournamentRef=
+doc(firestore,"tournaments",tournamentId);
+
+await runTransaction(firestore,async transaction=>{
+
+const tSnap=await transaction.get(tournamentRef);
+
+let current=match.cur||0;
+
+let max=match.max||48;
+
+if(tSnap.exists()){
+
+const t=tSnap.data();
+
+current=t.registeredPlayers || 0;
+
+max=t.slots || max;
+
+if(current>=max){
+
+throw new Error("Match Full");
+
+}
+
+if(entry>0){
+
+let balance=userData.balance || 0;
+
+if(balance<entry){
+
+throw new Error("Balance কম। Entry Fee: ৳"+entry);
+
+}
+
+transaction.update(
+userRef,
+{
+balance:balance-entry
+}
+);
+
+}
+
+transaction.update(
+tournamentRef,
+{
+registeredPlayers:current+1
+}
+);
+
+}else{
+
+if(current>=max){
+
+throw new Error("Match Full");
+
+}
+
+}
+
+const regRef=doc(
+collection(tournamentRef,"registrations")
+);
+
+transaction.set(regRef,{
+
+uid:user.uid,
+
+email:user.email,
+
+gameName:gameName,
+
+category:category,
+
+matchType:matchType,
+
+entryFee:entry,
+
+joinedAt:new Date().toISOString()
+
+});
+
+});
+
+match.cur=(match.cur||0)+1;
+
+alert(
+"JOIN SUCCESSFUL!\n\n"+
+"Game Name: "+gameName+
+"\nMatch: "+match.name
+);
+
+};
+
+
+window.firebaseLoadMatches=async function(){
+
+try{
+
+const snap=await getDocs(
+collection(firestore,"tournaments")
+);
+
+snap.forEach(d=>{
+
+const t=d.data();
+
+let category=t.category || "BR MATCH";
+
+let matchType=t.type || 
+((Number(t.entryFee)||0)>0 ? "paid":"free");
+
+if(!db[category])return;
+
+const m={
+
+firebaseId:d.id,
+
+name:t.title || "Free Fire Tournament",
+
+entry:Number(t.entryFee)||0
+? "৳"+(Number(t.entryFee)||0)
+:"FREE",
+
+prize:t.prize
+? "৳"+t.prize
+:"৳0",
+
+cur:Number(t.registeredPlayers)||0,
+
+max:Number(t.slots)||48,
+
+time:t.matchTime || "8:00 PM",
+
+code:t.roomId || "#REAL",
+
+  
