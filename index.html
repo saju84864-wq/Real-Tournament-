@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REAL TOURNAMENT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #07090d;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            border-bottom: 1px solid #20242c;
+            background: #0b0e13;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#ff4d00,#ff9800);
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .logo h1 {
+            font-size: 17px;
+            letter-spacing: 2px;
+        }
+
+        .logo small {
+            display: block;
+            margin-top: 2px;
+            color: #ff7a00;
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+
+        .login {
+            padding: 10px 15px;
+            border: 1px solid #ff6500;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 65px 20px 55px;
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(255,75,0,.22),
+                    transparent 35%
+                );
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 12px;
+            border: 1px solid #75401f;
+            border-radius: 30px;
+            color: #ff8a00;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            margin-top: 20px;
+            font-size: clamp(45px, 13vw, 78px);
+            line-height: .94;
+        }
+
+        .hero h2 span {
+            color: #ff5a00;
+        }
+
+        .hero p {
+            max-width: 450px;
+            margin-top: 20px;
+            color: #9299a5;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 14px 18px;
+            border-radius: 11px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .join {
+            background: linear-gradient(135deg,#ff4d00,#ff9800);
+            color: white;
+        }
+
+        .view {
+            background: #11151c;
+            border: 1px solid #282d36;
+            color: white;
+        }
+
+        section {
+            padding: 25px 18px;
+        }
+
+        .section-label {
+            color: #ff8100;
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            margin-top: 7px;
+            font-size: 25px;
+        }
+
+        .empty {
+            margin-top: 20px;
+            padding: 35px 20px;
+            text-align: center;
+            border: 1px solid #20252e;
+            border-radius: 17px;
+            background: #10141b;
+        }
+
+        .empty-icon {
+            font-size: 35px;
+        }
+
+        .empty h3 {
+            margin-top: 12px;
+        }
+
+        .empty p {
+            margin-top: 7px;
+            color: #858d9b;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+        }
+
+        .feature {
+            padding: 18px 10px;
+            text-align: center;
+            background: #10141b;
+            border: 1px solid #20252e;
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 26px;
+        }
+
+        .feature h3 {
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+        .feature p {
+            margin-top: 5px;
+            color: #858d9b;
+            font-size: 12px;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 30px 18px;
+            text-align: center;
+            border-top: 1px solid #20252e;
+            color: #858d9b;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        @media(max-width:600px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            R
+        </div>
+
+        <div>
+            <h1>REAL</h1>
+            <small>TOURNAMENT</small>
+        </div>
+
+    </div>
+
+    <a href="#" class="login">
+        LOGIN
+    </a>
+
+</header>
+
+
+<main>
+
+    <div class="hero">
+
+        <span class="tag">
+            FREE FIRE ONLY
+        </span>
+
+        <h2>
+            PLAY.<br>
+            COMPETE.<br>
+            <span>WIN.</span>
+        </h2>
+
+        <p>
+            Join Free Fire tournaments,
+            compete with players and win rewards.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#" class="btn join">
+                JOIN NOW
+            </a>
+
+            <a href="#tournaments" class="btn view">
+                TOURNAMENTS
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <section id="tournaments">
+
+        <div class="section-label">
+            TOURNAMENTS
+        </div>
+
+        <h2 class="section-title">
+            Upcoming Matches
+        </h2>
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                ⚡
+            </div>
+
+            <h3>
+                No tournaments yet
+            </h3>
+
+            <p>
+                New tournaments will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🎮
+            </div>
+
+            <h3>
+                FREE FIRE
+            </h3>
+
+            <p>
+                Tournament platform
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🏆
+            </div>
+
+            <h3>
+                COMPETE
+            </h3>
+
+            <p>
+                Play & compete
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💰
+            </div>
+
+            <h3>
+                REWARDS
+            </h3>
+
+            <p>
+                Win rewards
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>
+        REAL TOURNAMENT
+    </strong>
+
+    <p>
+        Free Fire Tournament Platform
+    </p>
+
+</footer>
+
+</body>
+  </html>
