@@ -928,5 +928,23 @@ document.getElementById(id)
 
 </script>
 
-</body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCWV2-_6Rvjs1fxhyf6nxqF2s8bH6fJuX4",
+    authDomain: "real-tournament-70194.firebaseapp.com",
+    projectId: "real-tournament-70194",
+    storageBucket: "real-tournament-70194.firebasestorage.app",
+    messagingSenderId: "201705667489",
+    appId: "1:201705667489:web:bbda4376c3bcf1fcf3a9e0",
+    measurementId: "G-EQGPDC0GLY"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  console.log("Firebase connected!");
+</script></body>
 </html>
