@@ -1,466 +1,732 @@
-  
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>REAL TOURNAMENT</title>
+<meta name="theme-color" content="#6857e8">
+<title>REAL TOURNAMENT — Free Fire</title>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5fb;
-  color:#24243a;
-  padding-bottom:85px;
 }
-button,input{
-  font-family:inherit;
-}
-button{cursor:pointer;border:0}
 
-.header{
-  height:70px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 18px;
-  border-bottom:1px solid #eee;
+body{
+  background:#f6f5fb;
+  color:#29283b;
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+header{
   position:sticky;
   top:0;
   z-index:50;
+  height:76px;
+  background:#fff;
+  border-bottom:1px solid #e7e5ef;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 17px;
 }
-.logo{
+
+.brand{
   display:flex;
   align-items:center;
   gap:10px;
-  font-size:21px;
-  font-weight:900;
-  color:#6656df;
 }
-.logoIcon{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#6f5bea,#b6aaff);
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
   display:grid;
   place-items:center;
-  color:white;
+  background:linear-gradient(135deg,#5e50df,#9a8cf5);
+  color:#fff;
   font-weight:900;
+  font-size:14px;
+  box-shadow:0 6px 16px #6658e633;
 }
-.profileBtn{
+
+.brand-title{
+  font-size:18px;
+  font-weight:900;
+  color:#5f54d6;
+}
+
+.brand-sub{
+  font-size:9px;
+  color:#999;
+  margin-top:3px;
+  letter-spacing:.5px;
+}
+
+.header-profile{
   width:44px;
   height:44px;
   border-radius:50%;
-  background:white;
-  border:1px solid #ddd;
-  font-size:21px;
-  color:#6656df;
+  background:#f0edff;
+  border:1px solid #ded9ff;
+  color:#6155d7;
+  font-size:20px;
 }
 
-.container{
-  max-width:1000px;
+main{
+  width:100%;
+  max-width:760px;
   margin:auto;
   padding:18px;
 }
 
-.page{display:none}
-.page.active{display:block}
-
-.hero{
-  background:linear-gradient(135deg,#6959e8,#a998ff);
-  border-radius:22px;
-  padding:25px 20px;
-  color:#fff;
-  margin-bottom:20px;
-  box-shadow:0 8px 25px #7565e533;
-}
-.hero h1{font-size:27px;margin-bottom:7px}
-.hero p{opacity:.9;font-size:14px}
-
-.sectionTitle{
-  font-size:21px;
-  margin:20px 0 14px;
+.page{
+  display:none;
 }
 
-.categoryGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
+.page.active{
+  display:block;
 }
-.category{
-  background:#fff;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid #e6e6ef;
-  box-shadow:0 4px 15px #0000000b;
-}
-.categoryImg{
-  height:145px;
-  background:linear-gradient(135deg,#6d5de7,#a89cff);
+
+.section-head{
   display:flex;
   align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:27px;
-  font-weight:900;
-  text-align:center;
-  padding:10px;
-}
-.categoryName{
-  padding:17px 10px;
-  text-align:center;
-  font-weight:700;
-  font-size:15px;
+  gap:12px;
+  margin:5px 0 18px;
 }
 
-.cards{
+.back-btn{
+  width:50px;
+  height:50px;
+  border:1px solid #dfdde8;
+  background:#fff;
+  border-radius:50%;
+  font-size:27px;
+  color:#5f55d5;
+}
+
+.section-head h1{
+  font-size:26px;
+}
+
+.section-head p{
+  color:#999;
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* HOME */
+
+.hero{
+  background:linear-gradient(135deg,#6657e5,#8f82ef);
+  color:#fff;
+  border-radius:23px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 10px 28px #6558e833;
+}
+
+.hero h1{
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.hero p{
+  font-size:13px;
+  opacity:.9;
+  line-height:1.5;
+}
+
+.hero-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.hero-icon{
+  font-size:55px;
+}
+
+.mode-title{
+  margin-bottom:12px;
+  font-size:18px;
+}
+
+.mode-grid{
   display:grid;
+  grid-template-columns:1fr 1fr;
   gap:15px;
 }
-.matchCard{
+
+.mode-card{
+  border:1px solid #e0dfe8;
+  border-radius:19px;
   background:#fff;
-  border-radius:20px;
   overflow:hidden;
-  border:1px solid #e7e7ef;
-  box-shadow:0 5px 20px #0000000a;
+  box-shadow:0 4px 15px #0000000a;
+  transition:.2s;
 }
-.matchTop{
-  height:190px;
-  background:linear-gradient(135deg,#4336a8,#9385ff);
-  position:relative;
-  padding:16px;
+
+.mode-card:active{
+  transform:scale(.98);
+}
+
+.mode-art{
+  height:145px;
+  display:grid;
+  place-items:center;
+  font-size:50px;
   color:#fff;
-  display:flex;
-  align-items:flex-end;
+  background:linear-gradient(135deg,#15152d,#6558d8);
 }
-.status{
+
+.mode-card:nth-child(2) .mode-art{
+  background:linear-gradient(135deg,#102b3b,#1597c5);
+}
+
+.mode-card:nth-child(3) .mode-art{
+  background:linear-gradient(135deg,#32162d,#c44c72);
+}
+
+.mode-card:nth-child(4) .mode-art{
+  background:linear-gradient(135deg,#182338,#bd7537);
+}
+
+.mode-card:nth-child(5) .mode-art{
+  background:linear-gradient(135deg,#142d38,#38a8ae);
+}
+
+.mode-card:nth-child(6) .mode-art{
+  background:linear-gradient(135deg,#171a30,#5968cc);
+}
+
+.mode-card:nth-child(7) .mode-art{
+  background:linear-gradient(135deg,#321822,#db526a);
+}
+
+.mode-card:nth-child(8) .mode-art{
+  background:linear-gradient(135deg,#17182e,#8b5be0);
+}
+
+.mode-name{
+  min-height:65px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+  font-weight:800;
+}
+
+/* MATCHES */
+
+.match-card{
+  background:#fff;
+  border:1px solid #dfdee8;
+  border-radius:22px;
+  overflow:hidden;
+  margin-bottom:17px;
+  box-shadow:0 4px 14px #0000000a;
+}
+
+.match-banner{
+  height:235px;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 50% 40%,#6c60ee55,transparent 35%),
+    linear-gradient(135deg,#101426,#584dd0);
+  color:#fff;
+  font-size:65px;
+}
+
+.match-status{
   position:absolute;
   top:14px;
   left:14px;
-  background:#20bf73;
   padding:7px 12px;
+  background:#ff3150;
+  color:#fff;
   border-radius:20px;
-  font-size:11px;
-  font-weight:800;
-}
-.matchId{
-  position:absolute;
-  right:14px;
-  top:14px;
-  background:#273452aa;
-  padding:7px 10px;
-  border-radius:15px;
-  font-size:11px;
-}
-.matchTitle{
-  font-size:21px;
+  font-size:10px;
   font-weight:900;
 }
-.matchMode{
-  font-size:13px;
-  margin-top:6px;
-  opacity:.9;
+
+.match-id{
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:7px 12px;
+  background:#284c66;
+  color:#fff;
+  border-radius:20px;
+  font-size:10px;
 }
-.matchInfo{
+
+.match-title{
+  position:absolute;
+  left:17px;
+  bottom:16px;
+  right:17px;
+  font-size:20px;
+  font-weight:900;
+  text-shadow:0 2px 7px #000;
+}
+
+.match-info{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  padding:16px 10px 8px;
-}
-.stat{
+  padding:16px 8px;
   text-align:center;
-  border-right:1px solid #eee;
 }
-.stat:last-child{border:0}
-.stat strong{
+
+.match-info-item{
+  padding:0 6px;
+}
+
+.match-info-item + .match-info-item{
+  border-left:1px solid #e5e4eb;
+}
+
+.match-info-item b{
+  font-size:18px;
+}
+
+.match-info-item span{
   display:block;
-  color:#3f3b6d;
-  font-size:17px;
-}
-.stat span{
   color:#999;
   font-size:10px;
-  text-transform:uppercase;
+  margin-top:5px;
 }
+
+.progress-wrap{
+  padding:0 17px 15px;
+}
+
 .progress{
-  margin:8px 16px;
   height:7px;
-  background:#ececf4;
-  border-radius:10px;
+  border-radius:20px;
+  background:#e9e8ef;
   overflow:hidden;
 }
+
 .progress i{
   display:block;
   height:100%;
-  background:#ffb000;
-}
-.matchBottom{
-  display:flex;
-  gap:10px;
-  padding:12px 16px 16px;
-}
-.time{
-  flex:1;
-  background:#f4f3fb;
-  border-radius:14px;
-  padding:13px;
-  font-size:12px;
-  color:#777;
-}
-.joinBtn{
-  flex:1.3;
-  background:#6b5bed;
-  color:white;
-  border-radius:15px;
-  font-weight:800;
-}
-.fullBtn{
-  width:100%;
-  padding:14px;
-  background:#6b5bed;
-  color:#fff;
-  border-radius:13px;
-  font-weight:800;
-}
-
-.walletBox{
-  background:linear-gradient(135deg,#6554e5,#998cff);
-  color:#fff;
-  border-radius:22px;
-  padding:24px;
-  margin-bottom:18px;
-}
-.walletBox small{opacity:.85}
-.walletBalance{
-  font-size:35px;
-  font-weight:900;
-  margin:8px 0 20px;
-}
-.walletActions{
-  display:flex;
-  gap:10px;
-}
-.walletActions button{
-  flex:1;
-  padding:13px;
-  border-radius:13px;
-  background:#ffffff22;
-  color:white;
-  border:1px solid #ffffff55;
-}
-
-.profileCard{
-  background:#fff;
+  background:#ff3150;
   border-radius:20px;
-  padding:22px;
-  border:1px solid #e6e6ee;
 }
-.avatar{
-  width:78px;
-  height:78px;
-  margin:auto;
-  border-radius:50%;
-  background:linear-gradient(135deg,#6c5ce7,#b1a7ff);
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:32px;
-}
-.profileName{
-  text-align:center;
-  font-size:21px;
-  font-weight:800;
-  margin:12px 0 5px;
-}
-.profileEmail{
-  text-align:center;
-  color:#888;
-  font-size:13px;
-}
-.profileRow{
-  padding:15px 0;
-  border-bottom:1px solid #eee;
+
+.match-actions{
   display:flex;
-  justify-content:space-between;
+  gap:10px;
+  padding:0 15px 15px;
 }
-.profileRow span:first-child{color:#888}
-.profileRow span:last-child{font-weight:700}
+
+.prize-btn{
+  width:115px;
+  border:0;
+  border-radius:24px;
+  background:#eeeaff;
+  color:#6256d9;
+  font-weight:800;
+}
+
+.join-btn{
+  flex:1;
+  height:46px;
+  border:0;
+  border-radius:24px;
+  background:#6557e5;
+  color:#fff;
+  font-weight:900;
+}
+
+/* CARDS */
+
+.card{
+  background:#fff;
+  border:1px solid #e1dfe9;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+}
 
 .empty{
-  background:#fff;
-  border-radius:18px;
-  padding:35px 15px;
   text-align:center;
-  color:#888;
-  border:1px solid #e8e8ef;
+  color:#999;
+  padding:35px 20px;
 }
 
-.bottomNav{
+.balance-label{
+  color:#888;
+  font-size:12px;
+}
+
+.balance{
+  color:#6055d5;
+  font-size:36px;
+  font-weight:900;
+  margin:7px 0 18px;
+}
+
+.action-row{
+  display:flex;
+  gap:10px;
+}
+
+.primary-btn{
+  border:0;
+  background:#6557e5;
+  color:#fff;
+  border-radius:12px;
+  padding:13px 18px;
+  font-weight:800;
+}
+
+.secondary-btn{
+  border:0;
+  background:#eeeaff;
+  color:#5f54d5;
+  border-radius:12px;
+  padding:13px 18px;
+  font-weight:800;
+}
+
+/* PROFILE */
+
+.profile-box{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.avatar{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#eeeaff;
+  color:#6155d8;
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  font-weight:900;
+}
+
+.profile-name{
+  font-weight:900;
+  font-size:17px;
+}
+
+.profile-email{
+  color:#999;
+  font-size:12px;
+  margin-top:5px;
+}
+
+/* NAV */
+
+.bottom-nav{
   position:fixed;
+  z-index:70;
   bottom:0;
   left:0;
   right:0;
-  height:76px;
+  height:78px;
   background:#fff;
-  border-top:1px solid #e5e5ee;
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -5px 22px #00000012;
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  z-index:60;
-  box-shadow:0 -5px 20px #0000000b;
+  max-width:760px;
+  margin:auto;
 }
-.navItem{
+
+.nav-item{
+  border:0;
   background:none;
-  color:#777;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
-  font-size:11px;
+  color:#85838e;
+  font-size:10px;
 }
-.navItem b{font-size:22px;font-weight:normal}
-.navItem.active{color:#6656df}
+
+.nav-icon{
+  display:block;
+  font-size:21px;
+  margin-bottom:5px;
+}
+
+.nav-item.active{
+  color:#6155d8;
+  font-weight:800;
+}
+
+/* MODAL */
 
 .modal{
-  display:none;
   position:fixed;
+  z-index:200;
   inset:0;
-  background:#0009;
-  z-index:100;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
+  background:#0008;
+  display:none;
+  align-items:flex-end;
 }
-.modalBox{
-  width:100%;
-  max-width:410px;
-  background:#fff;
-  border-radius:22px;
-  padding:23px;
-  max-height:90vh;
+
+.modal.show{
+  display:flex;
+}
+
+.sheet{
+  width:min(760px,100%);
+  max-height:92vh;
   overflow:auto;
+  background:#fff;
+  border-radius:26px 26px 0 0;
+  padding:22px;
 }
-.modalTitle{
-  font-size:22px;
-  font-weight:900;
-  color:#5145bb;
-  margin-bottom:16px;
+
+.sheet-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
 }
+
+.sheet h2{
+  font-size:23px;
+}
+
 .close{
-  float:right;
-  background:none;
-  font-size:25px;
-  color:#777;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:10px;
+  background:#eee;
 }
-.input{
+
+label{
+  display:block;
+  font-size:12px;
+  color:#777;
+  margin:12px 0 6px;
+}
+
+input,select{
   width:100%;
   padding:14px;
-  margin:6px 0;
-  border:1px solid #ddd;
+  border:1px solid #dddbe5;
   border-radius:12px;
   outline:none;
+  font-size:14px;
 }
-.input:focus{border-color:#6b5bed}
-.primary{
-  width:100%;
-  padding:14px;
-  background:#6b5bed;
-  color:#fff;
-  border-radius:12px;
-  font-weight:800;
-  margin-top:8px;
-}
-.secondary{
-  width:100%;
-  padding:14px;
-  background:#eeeef5;
-  color:#444;
-  border-radius:12px;
-  font-weight:700;
-  margin-top:8px;
-}
-.message{
-  text-align:center;
-  min-height:20px;
-  margin-top:10px;
-  font-size:13px;
-  color:#666;
-}
-.success{color:#18a866}
-.error{color:#e53950}
 
-.adminPanel{
-  background:#fff;
-  border:2px solid #765fea;
+input:focus,select:focus{
+  border-color:#6b5de2;
+}
+
+.full-btn{
+  width:100%;
+  margin-top:16px;
+}
+
+.message{
+  display:none;
+  padding:11px;
+  border-radius:11px;
+  font-size:12px;
+  margin-top:12px;
+}
+
+.message.show{
+  display:block;
+}
+
+.message.error{
+  color:#a9233c;
+  background:#ffe8ed;
+}
+
+.message.success{
+  color:#087348;
+  background:#e4fff1;
+}
+
+/* ADMIN */
+
+.admin-head{
+  background:linear-gradient(135deg,#17152c,#6558e6);
+  color:#fff;
   border-radius:20px;
   padding:20px;
+  margin-bottom:15px;
 }
-.adminHead{
-  background:linear-gradient(135deg,#6352dc,#9a8dff);
-  color:#fff;
-  margin:-20px -20px 18px;
-  padding:20px;
-  border-radius:18px 18px 0 0;
+
+.admin-head h2{
+  margin-bottom:6px;
 }
-.adminGrid{
+
+.admin-stat{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
 }
-.adminSection{
-  margin-top:18px;
-  padding-top:18px;
-  border-top:1px solid #eee;
-}
-.adminSection h3{margin-bottom:10px}
 
-@media(max-width:600px){
-  .container{padding:14px}
-  .categoryImg{height:125px;font-size:21px}
-  .matchTop{height:175px}
-  .adminGrid{grid-template-columns:1fr}
+.stat-box{
+  background:#fff;
+  border:1px solid #e2e0ea;
+  border-radius:15px;
+  padding:14px;
+  text-align:center;
+}
+
+.stat-box b{
+  display:block;
+  color:#6257d9;
+  font-size:21px;
+}
+
+.stat-box span{
+  font-size:10px;
+  color:#999;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+  .mode-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .mode-art{
+    height:155px;
+  }
+}
+
+/* SMALL */
+
+@media(max-width:370px){
+  main{
+    padding:13px;
+  }
+
+  .mode-grid{
+    gap:10px;
+  }
+
+  .mode-art{
+    height:125px;
+  }
+
+  .mode-name{
+    font-size:12px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="logo">
-    <div class="logoIcon">RT</div>
-    REAL TOURNAMENT
+<header>
+  <div class="brand">
+    <div class="logo">RT</div>
+    <div>
+      <div class="brand-title">REAL TOURNAMENT</div>
+      <div class="brand-sub">FREE FIRE TOURNAMENT</div>
+    </div>
   </div>
 
-  <button class="profileBtn" onclick="showPage('profile')">♙</button>
+  <button class="header-profile" onclick="showPage('profile')">♙</button>
 </header>
 
-
-<div class="container">
+<main>
 
 <!-- HOME -->
 <section id="home" class="page active">
 
   <div class="hero">
-    <h1>🔥 REAL TOURNAMENT</h1>
-    <p>Free Fire Tournament • Play • Win • Earn</p>
+    <div class="hero-row">
+      <div>
+        <h1>Free Fire Tournament</h1>
+        <p>Join matches, compete with players<br>and win exciting prizes.</p>
+      </div>
+      <div class="hero-icon">🏆</div>
+    </div>
   </div>
 
-  <h2 class="sectionTitle">🎮 Tournament Categories</h2>
+  <h2 class="mode-title">Choose Game Mode</h2>
 
-  <div id="categoryGrid" class="categoryGrid"></div>
+  <div class="mode-grid">
 
+    <button class="mode-card" onclick="selectMode('BR MATCH')">
+      <div class="mode-art">🏆</div>
+      <div class="mode-name">BR MATCH</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('BR SURVIVAL')">
+      <div class="mode-art">🛡️</div>
+      <div class="mode-name">BR SURVIVAL</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('CLASH SQUAD')">
+      <div class="mode-art">⚔️</div>
+      <div class="mode-name">CLASH SQUAD</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('KATANA VS KATANA')">
+      <div class="mode-art">🗡️</div>
+      <div class="mode-name">KATANA VS KATANA</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('CS | 2V2')">
+      <div class="mode-art">👥</div>
+      <div class="mode-name">CS | 2V2</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('LONE WOLF')">
+      <div class="mode-art">🐺</div>
+      <div class="mode-name">LONE WOLF</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('LOSE TO WIN')">
+      <div class="mode-art">🎯</div>
+      <div class="mode-name">LOSE TO WIN</div>
+    </button>
+
+    <button class="mode-card" onclick="selectMode('LONE WOLF 1V1')">
+      <div class="mode-art">🔥</div>
+      <div class="mode-name">LONE WOLF 1V1</div>
+    </button>
+
+  </div>
 </section>
 
 
 <!-- MATCHES -->
-<section id="matchesPage" class="page">
+<section id="matches" class="page">
 
-  <h2 class="sectionTitle">🎮 Matches</h2>
-
-  <div id="matchesList" class="cards">
-    <div class="empty">Loading matches...</div>
+  <div class="section-head">
+    <button class="back-btn" onclick="showPage('home')">‹</button>
+    <div>
+      <h1>Matches</h1>
+      <p id="matchCount">Loading matches...</p>
+    </div>
   </div>
+
+  <div id="matchList"></div>
 
 </section>
 
@@ -468,21 +734,41 @@ button{cursor:pointer;border:0}
 <!-- WALLET -->
 <section id="wallet" class="page">
 
-  <h2 class="sectionTitle">💰 Wallet</h2>
-
-  <div class="walletBox">
-    <small>Available Balance</small>
-    <div class="walletBalance">
-      ৳<span id="walletBalance">0</span>
-    </div>
-
-    <div class="walletActions">
-      <button onclick="requestDeposit()">＋ Add Money</button>
-      <button onclick="showTransactions()">Transactions</button>
+  <div class="section-head">
+    <button class="back-btn" onclick="showPage('home')">‹</button>
+    <div>
+      <h1>Wallet</h1>
+      <p>Your tournament balance</p>
     </div>
   </div>
 
-  <div id="transactions" class="cards"></div>
+  <div class="card">
+
+    <div class="balance-label">Available Balance</div>
+
+    <div class="balance">
+      ৳<span id="walletBalance">0</span>
+    </div>
+
+    <div class="action-row">
+      <button class="primary-btn" onclick="openDeposit()">
+        + Add Money
+      </button>
+
+      <button class="secondary-btn" onclick="openWithdraw()">
+        Withdraw
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h3>Wallet Information</h3>
+    <p style="color:#999;font-size:12px;margin-top:8px;line-height:1.6">
+      Tournament entry fees and approved wallet transactions
+      will be recorded through Firebase.
+    </p>
+  </div>
 
 </section>
 
@@ -490,10 +776,19 @@ button{cursor:pointer;border:0}
 <!-- RESULTS -->
 <section id="results" class="page">
 
-  <h2 class="sectionTitle">🏆 Results</h2>
+  <div class="section-head">
+    <button class="back-btn" onclick="showPage('home')">‹</button>
 
-  <div id="resultsList" class="cards">
-    <div class="empty">No results yet.</div>
+    <div>
+      <h1>Results</h1>
+      <p>Your recent tournament results</p>
+    </div>
+  </div>
+
+  <div id="resultsList">
+    <div class="card empty">
+      No results yet.
+    </div>
   </div>
 
 </section>
@@ -502,46 +797,91 @@ button{cursor:pointer;border:0}
 <!-- PROFILE -->
 <section id="profile" class="page">
 
-  <h2 class="sectionTitle">👤 Profile</h2>
+  <div class="section-head">
+    <button class="back-btn" onclick="showPage('home')">‹</button>
 
-  <div id="profileContent">
-    <div class="profileCard">
+    <div>
+      <h1>Profile</h1>
+      <p>Your account</p>
+    </div>
+  </div>
 
-      <div class="avatar">👤</div>
 
-      <div class="profileName" id="profileName">
-        Guest
-      </div>
+  <!-- Logged out -->
+  <div id="loggedOutProfile" class="card">
 
-      <div class="profileEmail" id="profileEmail">
-        Login required
-      </div>
+    <div class="empty">
+      <div style="font-size:45px;margin-bottom:12px">👤</div>
 
-      <br>
+      <h3>Welcome to REAL TOURNAMENT</h3>
 
-      <div class="profileRow">
-        <span>Balance</span>
-        <span>৳<b id="profileBalance">0</b></span>
-      </div>
+      <p style="margin:8px 0 18px">
+        Login to join tournaments and manage your account.
+      </p>
 
-      <div class="profileRow">
-        <span>Account</span>
-        <span id="accountStatus">Guest</span>
-      </div>
-
-      <button class="primary" id="loginOpenButton"
-              onclick="openLogin()">
-        🔐 LOGIN
+      <button class="primary-btn" onclick="openLogin()">
+        LOGIN
       </button>
 
-      <button class="secondary"
-              id="logoutButton"
-              onclick="logout()"
-              style="display:none">
+      <button class="secondary-btn" onclick="openSignup()">
+        CREATE ACCOUNT
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- Logged in -->
+  <div id="loggedInProfile" style="display:none">
+
+    <div class="card">
+
+      <div class="profile-box">
+
+        <div class="avatar" id="profileAvatar">
+          U
+        </div>
+
+        <div>
+          <div class="profile-name" id="profileName">
+            User
+          </div>
+
+          <div class="profile-email" id="profileEmail">
+            user@email.com
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="balance-label">
+        Wallet Balance
+      </div>
+
+      <div class="balance">
+        ৳<span id="profileBalance">0</span>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <button
+        class="secondary-btn"
+        style="width:100%"
+        onclick="logout()"
+      >
         LOGOUT
       </button>
 
     </div>
+
   </div>
 
 </section>
@@ -550,118 +890,126 @@ button{cursor:pointer;border:0}
 <!-- ADMIN -->
 <section id="admin" class="page">
 
-  <div id="adminLoginBox" class="profileCard">
+  <div class="section-head">
 
-    <h2 class="sectionTitle">👑 Admin Portal</h2>
+    <button class="back-btn" onclick="showPage('home')">
+      ‹
+    </button>
 
-    <p style="color:#888;margin-bottom:15px">
-      Admin account দিয়ে login করলে Admin Portal খুলবে।
+    <div>
+      <h1>Admin Portal</h1>
+      <p>Manage REAL TOURNAMENT</p>
+    </div>
+
+  </div>
+
+
+  <div id="adminLoginBox" class="card">
+
+    <h3>Admin Login</h3>
+
+    <p style="color:#999;font-size:12px;margin-top:7px">
+      Login with the Firebase account assigned as admin.
     </p>
 
-    <button class="primary" onclick="openLogin()">
-      🔐 ADMIN LOGIN
+    <button
+      class="primary-btn"
+      style="margin-top:15px"
+      onclick="openLogin()"
+    >
+      LOGIN
     </button>
 
   </div>
 
-  <div id="adminPanel" class="adminPanel"
-       style="display:none">
 
-    <div class="adminHead">
-      <h2>👑 ADMIN PORTAL</h2>
-      <p style="margin-top:5px">REAL TOURNAMENT CONTROL</p>
-    </div>
+  <div id="adminPanel" style="display:none">
 
-    <!-- ADD MONEY -->
-    <div class="adminSection">
-      <h3>💰 Add Player Money</h3>
-
-      <input id="adminPlayerEmail"
-             class="input"
-             placeholder="Player Email">
-
-      <input id="adminMoney"
-             class="input"
-             type="number"
-             placeholder="Amount">
-
-      <button class="primary"
-              onclick="adminAddMoney()">
-        ADD MONEY
-      </button>
-
-      <div id="adminMoneyMsg"
-           class="message"></div>
+    <div class="admin-head">
+      <h2>REAL TOURNAMENT ADMIN</h2>
+      <p>Control tournaments and players</p>
     </div>
 
 
-    <!-- CREATE MATCH -->
-    <div class="adminSection">
+    <div class="admin-stat">
 
-      <h3>🎮 Create Match</h3>
+      <div class="stat-box">
+        <b id="adminMatches">0</b>
+        <span>Matches</span>
+      </div>
 
-      <input id="newTitle"
-             class="input"
-             placeholder="Match Title">
+      <div class="stat-box">
+        <b id="adminUsers">0</b>
+        <span>Users</span>
+      </div>
 
-      <input id="newMode"
-             class="input"
-             placeholder="Mode">
-
-      <input id="newFee"
-             class="input"
-             type="number"
-             placeholder="Entry Fee">
-
-      <input id="newPrize"
-             class="input"
-             type="number"
-             placeholder="Prize Pool">
-
-      <input id="newSlots"
-             class="input"
-             type="number"
-             placeholder="Players / Slots">
-
-      <input id="newTime"
-             class="input"
-             placeholder="Match Time">
-
-      <button class="primary"
-              onclick="adminCreateMatch()">
-        CREATE MATCH
-      </button>
-
-      <div id="adminMatchMsg"
-           class="message"></div>
+      <div class="stat-box">
+        <b id="adminEntries">0</b>
+        <span>Entries</span>
+      </div>
 
     </div>
 
 
-    <!-- UPDATE ROOM -->
-    <div class="adminSection">
+    <div class="card" style="margin-top:15px">
 
-      <h3>🔑 Update Room</h3>
+      <h3>Create Tournament</h3>
 
-      <input id="roomMatchId"
-             class="input"
-             placeholder="Match Document ID">
+      <label>Title</label>
+      <input id="adminTitle" placeholder="Free Fire Tournament">
 
-      <input id="roomId"
-             class="input"
-             placeholder="Room ID">
+      <label>Game Mode</label>
 
-      <input id="roomPassword"
-             class="input"
-             placeholder="Room Password">
+      <select id="adminMode">
 
-      <button class="primary"
-              onclick="adminUpdateRoom()">
-        UPDATE ROOM
+        <option>BR MATCH</option>
+        <option>BR SURVIVAL</option>
+        <option>CLASH SQUAD</option>
+        <option>KATANA VS KATANA</option>
+        <option>CS | 2V2</option>
+        <option>LONE WOLF</option>
+        <option>LOSE TO WIN</option>
+        <option>LONE WOLF 1V1</option>
+
+      </select>
+
+      <label>Entry Fee</label>
+      <input id="adminEntry" type="number" value="20">
+
+      <label>Prize</label>
+      <input id="adminPrize" type="number" value="500">
+
+      <label>Slots</label>
+      <input id="adminSlots" type="number" value="48">
+
+      <label>Match Time</label>
+      <input id="adminTime" placeholder="8:00 PM">
+
+      <label>Room ID</label>
+      <input id="adminRoomId" placeholder="-">
+
+      <label>Room Password</label>
+      <input id="adminRoomPassword" placeholder="-">
+
+      <button
+        class="primary-btn full-btn"
+        onclick="createTournament()"
+      >
+        CREATE TOURNAMENT
       </button>
 
-      <div id="roomMsg"
-           class="message"></div>
+      <div id="adminMessage" class="message"></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Existing Tournaments</h3>
+
+      <div id="adminTournamentList">
+        Loading...
+      </div>
 
     </div>
 
@@ -669,82 +1017,120 @@ button{cursor:pointer;border:0}
 
 </section>
 
-</div>
+</main>
 
 
 <!-- BOTTOM NAV -->
-<nav class="bottomNav">
 
-  <button class="navItem active"
-          data-page="home"
-          onclick="showPage('home')">
-    <b>⌂</b>
+<nav class="bottom-nav">
+
+  <button
+    class="nav-item active"
+    onclick="showPage('home')"
+  >
+    <span class="nav-icon">⌂</span>
     Home
   </button>
 
-  <button class="navItem"
-          data-page="matchesPage"
-          onclick="showPage('matchesPage')">
-    <b>🎮</b>
+  <button
+    class="nav-item"
+    onclick="showPage('matches')"
+  >
+    <span class="nav-icon">🎮</span>
     Matches
   </button>
 
-  <button class="navItem"
-          data-page="wallet"
-          onclick="showPage('wallet')">
-    <b>▣</b>
+  <button
+    class="nav-item"
+    onclick="showPage('wallet')"
+  >
+    <span class="nav-icon">▣</span>
     Wallet
   </button>
 
-  <button class="navItem"
-          data-page="results"
-          onclick="showPage('results')">
-    <b>🏆</b>
+  <button
+    class="nav-item"
+    onclick="showPage('results')"
+  >
+    <span class="nav-icon">🏆</span>
     Results
   </button>
 
-  <button class="navItem"
-          data-page="profile"
-          onclick="showPage('profile')">
-    <b>♙</b>
+  <button
+    class="nav-item"
+    onclick="showPage('profile')"
+  >
+    <span class="nav-icon">♙</span>
     Profile
   </button>
 
 </nav>
 
 
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="modal">
+<!-- LOGIN / SIGNUP -->
 
-  <div class="modalBox">
+<div id="authModal" class="modal">
 
-    <button class="close"
-            onclick="closeModal('loginModal')">×</button>
+  <div class="sheet">
 
-    <div class="modalTitle">🔐 Login</div>
+    <div class="sheet-top">
 
-    <input id="loginEmail"
-           class="input"
-           type="email"
-           placeholder="Email">
+      <h2 id="authTitle">
+        Login
+      </h2>
 
-    <input id="loginPassword"
-           class="input"
-           type="password"
-           placeholder="Password">
+      <button
+        class="close"
+        onclick="closeAuth()"
+      >
+        ✕
+      </button>
 
-    <button class="primary"
-            onclick="login()">
-      LOGIN
+    </div>
+
+
+    <label>Email</label>
+
+    <input
+      id="authEmail"
+      type="email"
+      placeholder="Enter email"
+    >
+
+
+    <label>Password</label>
+
+    <input
+      id="authPassword"
+      type="password"
+      placeholder="Enter password"
+    >
+
+
+    <div id="signupFields" style="display:none">
+
+      <label>Name</label>
+
+      <input
+        id="authName"
+        placeholder="Your name"
+      >
+
+    </div>
+
+
+    <button
+      class="primary-btn full-btn"
+      onclick="submitAuth()"
+    >
+      CONTINUE
     </button>
 
-    <button class="secondary"
-            onclick="signup()">
-      CREATE ACCOUNT
-    </button>
 
-    <div id="loginMessage"
-         class="message"></div>
+    <div
+      id="authMessage"
+      class="message"
+    ></div>
 
   </div>
 
@@ -752,803 +1138,1219 @@ button{cursor:pointer;border:0}
 
 
 <!-- JOIN MODAL -->
+
 <div id="joinModal" class="modal">
 
-  <div class="modalBox">
+  <div class="sheet">
 
-    <button class="close"
-            onclick="closeModal('joinModal')">×</button>
+    <div class="sheet-top">
 
-    <div class="modalTitle">🎮 Join Match</div>
+      <h2>Join Tournament</h2>
 
-    <div id="joinDetails"></div>
+      <button
+        class="close"
+        onclick="closeJoin()"
+      >
+        ✕
+      </button>
 
-    <button class="primary"
-            onclick="confirmJoin()">
+    </div>
+
+
+    <div
+      id="joinTournamentInfo"
+      class="card"
+    ></div>
+
+
+    <label>Free Fire UID</label>
+
+    <input
+      id="ffUid"
+      placeholder="Enter Free Fire UID"
+    >
+
+
+    <label>In-game Name</label>
+
+    <input
+      id="ffName"
+      placeholder="Enter in-game name"
+    >
+
+
+    <button
+      class="primary-btn full-btn"
+      onclick="confirmJoin()"
+    >
       CONFIRM JOIN
     </button>
 
-    <button class="secondary"
-            onclick="closeModal('joinModal')">
-      CANCEL
-    </button>
 
-    <div id="joinMessage"
-         class="message"></div>
+    <div
+      id="joinMessage"
+      class="message"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- FIREBASE COMPAT -->
-<script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore-compat.js"></script>
+<!-- DEPOSIT MODAL -->
+
+<div id="depositModal" class="modal">
+
+  <div class="sheet">
+
+    <div class="sheet-top">
+
+      <h2>Add Money</h2>
+
+      <button
+        class="close"
+        onclick="closeDeposit()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <p style="color:#888;font-size:12px;line-height:1.6">
+      Enter the amount you want to add. This creates a
+      Firebase wallet request for admin approval.
+    </p>
+
+
+    <label>Amount</label>
+
+    <input
+      id="depositAmount"
+      type="number"
+      placeholder="100"
+    >
+
+
+    <label>Payment Method</label>
+
+    <select id="depositMethod">
+      <option>bKash</option>
+      <option>Nagad</option>
+      <option>Rocket</option>
+    </select>
+
+
+    <label>Transaction ID</label>
+
+    <input
+      id="depositTrx"
+      placeholder="Transaction ID"
+    >
+
+
+    <button
+      class="primary-btn full-btn"
+      onclick="submitDeposit()"
+    >
+      SUBMIT REQUEST
+    </button>
+
+
+    <div
+      id="depositMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- WITHDRAW MODAL -->
+
+<div id="withdrawModal" class="modal">
+
+  <div class="sheet">
+
+    <div class="sheet-top">
+
+      <h2>Withdraw</h2>
+
+      <button
+        class="close"
+        onclick="closeWithdraw()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <label>Amount</label>
+
+    <input
+      id="withdrawAmount"
+      type="number"
+      placeholder="100"
+    >
+
+
+    <label>Payment Method</label>
+
+    <select id="withdrawMethod">
+      <option>bKash</option>
+      <option>Nagad</option>
+      <option>Rocket</option>
+    </select>
+
+
+    <label>Account Number</label>
+
+    <input
+      id="withdrawNumber"
+      placeholder="01XXXXXXXXX"
+    >
+
+
+    <button
+      class="primary-btn full-btn"
+      onclick="submitWithdraw()"
+    >
+      SUBMIT WITHDRAWAL
+    </button>
+
+
+    <div
+      id="withdrawMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+</div>
 
 
 <script>
 
-/* =================================
+/* =========================================================
    FIREBASE CONFIG
-================================= */
+========================================================= */
 
 const firebaseConfig = {
-  apiKey:"AIzaSyCWV2-_6Rvjs1fxhyf6nxF2s8bH6fJuX4",
-  authDomain:"real-tournament-70194.firebaseapp.com",
-  projectId:"real-tournament-70194",
-  storageBucket:"real-tournament-70194.firebasestorage.app",
-  messagingSenderId:"201705667489",
-  appId:"1:201705667489:web:bbda4376c3bcf1fcf3a9e0",
-  measurementId:"G-EQGPDC0GLY"
+
+  apiKey:
+    "AIzaSyCWV2-_6Rvjs1fxhyf6nxqF2s8bH6fJuX4",
+
+  authDomain:
+    "real-tournament-70194.firebaseapp.com",
+
+  projectId:
+    "real-tournament-70194",
+
+  storageBucket:
+    "real-tournament-70194.firebasestorage.app",
+
+  messagingSenderId:
+    "201705667489",
+
+  appId:
+    "1:201705667489:web:94aa0638b3c5055ef3a9e0",
+
+  measurementId:
+    "G-VH62PZ051D"
+
 };
 
 
-/* =================================
-   ADMIN EMAIL
-   এখানে আসল Admin email বসাবে
-================================= */
-
-const ADMIN_EMAIL = "admin@realtournament.com";
-
-
-/* =================================
-   FIREBASE START
-================================= */
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
 
 let auth = null;
 let db = null;
-let currentUser = null;
-let selectedMatch = null;
 
-if(typeof firebase !== "undefined"){
+let currentUser = null;
+
+let currentMode = "ALL";
+
+let allMatches = [];
+
+let selectedTournament = null;
+
+let authSignupMode = false;
+
+
+/*
+ IMPORTANT:
+ Replace this email with the Firebase email
+ that should have admin access.
+*/
+const ADMIN_EMAIL = "admin@realtournament.com";
+
+
+/* =========================================================
+   FIREBASE START
+========================================================= */
+
+try{
 
   firebase.initializeApp(firebaseConfig);
 
   auth = firebase.auth();
+
   db = firebase.firestore();
 
-}else{
-
-  console.error("Firebase CDN not loaded");
-
-}
-
-
-/* =================================
-   TOURNAMENT CATEGORIES
-================================= */
-
-const categories = [
-
-  {
-    name:"BR MATCH",
-    icon:"🔥",
-    mode:"Battle Royale",
-    fee:20,
-    prize:500,
-    slots:48
-  },
-
-  {
-    name:"BR SURVIVAL",
-    icon:"⚡",
-    mode:"Battle Royale Survival",
-    fee:10,
-    prize:300,
-    slots:48
-  },
-
-  {
-    name:"CLASH SQUAD",
-    icon:"⚔️",
-    mode:"Clash Squad",
-    fee:20,
-    prize:500,
-    slots:16
-  },
-
-  {
-    name:"KATANA VS KATANA",
-    icon:"🗡️",
-    mode:"Katana Battle",
-    fee:10,
-    prize:250,
-    slots:16
-  },
-
-  {
-    name:"CS | 2V2",
-    icon:"🎯",
-    mode:"Clash Squad 2V2",
-    fee:20,
-    prize:600,
-    slots:16
-  },
-
-  {
-    name:"LONE WOLF",
-    icon:"🐺",
-    mode:"Lone Wolf",
-    fee:10,
-    prize:250,
-    slots:16
-  },
-
-  {
-    name:"LOSE TO WIN",
-    icon:"🏹",
-    mode:"Special Match",
-    fee:5,
-    prize:150,
-    slots:20
-  },
-
-  {
-    name:"LONE WOLF 1V1",
-    icon:"🥷",
-    mode:"Lone Wolf 1V1",
-    fee:10,
-    prize:300,
-    slots:16
-  }
-
-];
-
-
-/* =================================
-   CATEGORY UI
-================================= */
-
-function renderCategories(){
-
-  const box = document.getElementById("categoryGrid");
-
-  box.innerHTML = "";
-
-  categories.forEach((c,index)=>{
-
-    box.innerHTML += `
-
-      <div class="category"
-           onclick="openCategory(${index})">
-
-        <div class="categoryImg">
-          ${c.icon}<br>
-          ${c.name}
-        </div>
-
-        <div class="categoryName">
-          ${c.name}
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-renderCategories();
-
-
-/* =================================
-   PAGE NAVIGATION
-================================= */
-
-function showPage(page){
-
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
-
-  const target = document.getElementById(page);
-
-  if(target){
-    target.classList.add("active");
-  }
-
-  document.querySelectorAll(".navItem")
-    .forEach(n=>n.classList.remove("active"));
-
-  const nav = document.querySelector(
-    `.navItem[data-page="${page}"]`
-  );
-
-  if(nav) nav.classList.add("active");
-
-
-  if(page==="matchesPage"){
-    loadMatches();
-  }
-
-  if(page==="wallet"){
-    loadWallet();
-  }
-
-  if(page==="results"){
-    loadResults();
-  }
-
-  if(page==="profile"){
-    loadProfile();
-  }
-
-  if(page==="admin"){
-    checkAdmin();
-  }
-
-  window.scrollTo(0,0);
-}
-
-
-/* =================================
-   CATEGORY CLICK
-================================= */
-
-function openCategory(index){
-
-  const c = categories[index];
-
-  selectedMatch = {
-    category:c.name,
-    mode:c.mode,
-    entryFee:c.fee,
-    prize:c.prize,
-    slots:c.slots
-  };
-
-  document.getElementById("joinDetails").innerHTML = `
-
-    <h3>${c.icon} ${c.name}</h3>
-
-    <div class="profileRow">
-      <span>Mode</span>
-      <span>${c.mode}</span>
-    </div>
-
-    <div class="profileRow">
-      <span>Entry Fee</span>
-      <span>৳${c.fee}</span>
-    </div>
-
-    <div class="profileRow">
-      <span>Prize Pool</span>
-      <span>৳${c.prize}</span>
-    </div>
-
-    <div class="profileRow">
-      <span>Slots</span>
-      <span>${c.slots}</span>
-    </div>
-
-  `;
-
-  if(!currentUser){
-
-    openLogin();
-    return;
-
-  }
-
-  document.getElementById("joinModal").style.display="flex";
-
-}
-
-
-/* =================================
-   LOGIN
-================================= */
-
-function openLogin(){
-
-  document.getElementById("loginModal")
-    .style.display="flex";
-
-}
-
-function closeModal(id){
-
-  document.getElementById(id)
-    .style.display="none";
-
-}
-
-
-/* =================================
-   FIREBASE LOGIN
-================================= */
-
-function login(){
-
-  if(!auth){
-
-    setLoginMessage(
-      "Firebase load হয়নি। GitHub Pages URL দিয়ে খুলুন।",
-      true
-    );
-
-    return;
-  }
-
-  const email =
-    document.getElementById("loginEmail").value.trim();
-
-  const password =
-    document.getElementById("loginPassword").value;
-
-  if(!email || !password){
-
-    setLoginMessage(
-      "Email এবং Password দিন।",
-      true
-    );
-
-    return;
-  }
-
-  setLoginMessage("Logging in...");
-
-  auth.signInWithEmailAndPassword(
-    email,
-    password
-  )
-
-  .then(()=>{
-
-    setLoginMessage("✅ Login Successful!");
-
-    setTimeout(()=>{
-      closeModal("loginModal");
-
-      if(selectedMatch){
-        document.getElementById("joinModal")
-          .style.display="flex";
-      }
-
-    },700);
-
-  })
-
-  .catch(error=>{
-
-    setLoginMessage(
-      error.message,
-      true
-    );
-
-  });
-
-}
-
-
-/* =================================
-   SIGN UP
-================================= */
-
-function signup(){
-
-  if(!auth){
-
-    setLoginMessage(
-      "Firebase load হয়নি।",
-      true
-    );
-
-    return;
-  }
-
-  const email =
-    document.getElementById("loginEmail").value.trim();
-
-  const password =
-    document.getElementById("loginPassword").value;
-
-  if(!email || !password){
-
-    setLoginMessage(
-      "Email এবং Password দিন।",
-      true
-    );
-
-    return;
-  }
-
-  if(password.length < 6){
-
-    setLoginMessage(
-      "Password কমপক্ষে 6 characters হতে হবে।",
-      true
-    );
-
-    return;
-  }
-
-  setLoginMessage("Account তৈরি হচ্ছে...");
-
-  auth.createUserWithEmailAndPassword(
-    email,
-    password
-  )
-
-  .then(async result=>{
-
-    await db.collection("users")
-      .doc(result.user.uid)
-      .set({
-
-        email:email,
-
-        name:email.split("@")[0],
-
-        balance:0,
-
-        totalMatches:0,
-
-        wins:0,
-
-        losses:0,
-
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-
-      });
-
-    setLoginMessage(
-      "✅ Account Created!"
-    );
-
-  })
-
-  .catch(error=>{
-
-    setLoginMessage(
-      error.message,
-      true
-    );
-
-  });
-
-}
-
-
-function setLoginMessage(text,error=false){
-
-  const el =
-    document.getElementById("loginMessage");
-
-  el.innerText=text;
-
-  el.className =
-    "message " + (error ? "error" : "success");
-
-}
-
-
-/* =================================
-   AUTH STATE
-================================= */
-
-if(auth){
-
-  auth.onAuthStateChanged(async user=>{
+  auth.onAuthStateChanged(async function(user){
 
     currentUser = user;
 
-    if(user){
+    await updateProfile();
 
-      await ensureUser();
+    await updateWallet();
 
-      loadProfile();
-
-      loadWallet();
-
-      updateAdminButton();
-
-    }else{
-
-      updateGuestProfile();
-
-      document.getElementById("adminPanel")
-        .style.display="none";
-
-    }
+    await checkAdmin();
 
   });
 
+}catch(error){
+
+  console.error("Firebase error:",error);
+
 }
 
 
-/* =================================
-   ENSURE USER
-================================= */
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
 
-async function ensureUser(){
+function showPage(page){
 
-  if(!currentUser || !db) return;
+  document
+    .querySelectorAll(".page")
+    .forEach(function(section){
 
-  const ref =
-    db.collection("users")
-      .doc(currentUser.uid);
-
-  const snap = await ref.get();
-
-  if(!snap.exists){
-
-    await ref.set({
-
-      email:currentUser.email,
-
-      name:
-        currentUser.email.split("@")[0],
-
-      balance:0,
-
-      totalMatches:0,
-
-      wins:0,
-
-      losses:0
+      section.classList.remove("active");
 
     });
 
+
+  const selected =
+    document.getElementById(page);
+
+  if(selected){
+
+    selected.classList.add("active");
+
   }
+
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+
+  const navPages =
+    [
+      "home",
+      "matches",
+      "wallet",
+      "results",
+      "profile"
+    ];
+
+  const index =
+    navPages.indexOf(page);
+
+  if(index >= 0){
+
+    document
+      .querySelectorAll(".nav-item")
+      [index]
+      .classList.add("active");
+
+  }
+
+
+  if(page === "matches"){
+
+    loadMatches();
+
+  }
+
+
+  if(page === "results"){
+
+    loadResults();
+
+  }
+
+
+  if(page === "admin"){
+
+    loadAdmin();
+
+  }
+
+
+  window.scrollTo(0,0);
 
 }
 
 
-/* =================================
-   PROFILE
-================================= */
+/* =========================================================
+   MODE
+========================================================= */
 
-async function loadProfile(){
+function selectMode(mode){
 
-  if(!currentUser){
+  currentMode = mode;
 
-    updateGuestProfile();
+  showPage("matches");
 
-    return;
-  }
+}
 
-  let data={};
 
-  if(db){
+/* =========================================================
+   LOGIN MODAL
+========================================================= */
 
-    const snap =
-      await db.collection("users")
-        .doc(currentUser.uid)
-        .get();
+function openLogin(){
 
-    if(snap.exists){
-      data=snap.data();
-    }
+  authSignupMode = false;
 
-  }
+  document.getElementById("authTitle")
+    .textContent = "Login";
+
+  document.getElementById("signupFields")
+    .style.display = "none";
+
+  clearMessage("authMessage");
+
+  document.getElementById("authModal")
+    .classList.add("show");
+
+}
+
+
+function openSignup(){
+
+  authSignupMode = true;
+
+  document.getElementById("authTitle")
+    .textContent = "Create Account";
+
+  document.getElementById("signupFields")
+    .style.display = "block";
+
+  clearMessage("authMessage");
+
+  document.getElementById("authModal")
+    .classList.add("show");
+
+}
+
+
+function closeAuth(){
+
+  document
+    .getElementById("authModal")
+    .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+async function submitAuth(){
+
+  const email =
+    document
+      .getElementById("authEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("authPassword")
+      .value;
 
   const name =
-    data.name ||
-    currentUser.email.split("@")[0];
+    document
+      .getElementById("authName")
+      .value
+      .trim();
 
-  const balance =
-    Number(data.balance || 0);
 
-  document.getElementById("profileName")
-    .innerText=name;
+  if(!email || !password){
 
-  document.getElementById("profileEmail")
-    .innerText=currentUser.email;
+    showMessage(
+      "authMessage",
+      "Email and password required.",
+      true
+    );
 
-  document.getElementById("profileBalance")
-    .innerText=balance;
+    return;
 
-  document.getElementById("accountStatus")
-    .innerText="Verified";
+  }
 
-  document.getElementById("loginOpenButton")
-    .style.display="none";
 
-  document.getElementById("logoutButton")
-    .style.display="block";
+  try{
+
+    if(authSignupMode){
+
+      const result =
+        await auth
+          .createUserWithEmailAndPassword(
+            email,
+            password
+          );
+
+
+      await db
+        .collection("users")
+        .doc(result.user.uid)
+        .set({
+
+          name:
+            name || email.split("@")[0],
+
+          email:
+            email,
+
+          balance:
+            0,
+
+          role:
+            "user",
+
+          createdAt:
+            firebase.firestore.FieldValue
+              .serverTimestamp()
+
+        });
+
+
+      showMessage(
+        "authMessage",
+        "Account created successfully.",
+        false
+      );
+
+    }else{
+
+      await auth
+        .signInWithEmailAndPassword(
+          email,
+          password
+        );
+
+
+      showMessage(
+        "authMessage",
+        "Login successful.",
+        false
+      );
+
+    }
+
+
+    setTimeout(
+      closeAuth,
+      700
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "authMessage",
+      firebaseError(error),
+      true
+    );
+
+  }
 
 }
 
 
-function updateGuestProfile(){
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-  document.getElementById("profileName")
-    .innerText="Guest";
+async function logout(){
 
-  document.getElementById("profileEmail")
-    .innerText="Login required";
+  if(!auth)return;
 
-  document.getElementById("profileBalance")
-    .innerText="0";
+  try{
 
-  document.getElementById("accountStatus")
-    .innerText="Guest";
+    await auth.signOut();
 
-  document.getElementById("loginOpenButton")
-    .style.display="block";
+    showPage("home");
 
-  document.getElementById("logoutButton")
-    .style.display="none";
+  }catch(error){
+
+    console.error(error);
+
+  }
 
 }
 
 
-/* =================================
-   WALLET
-================================= */
+/* =========================================================
+   PROFILE
+========================================================= */
 
-async function loadWallet(){
+async function updateProfile(){
+
+  const loggedOut =
+    document.getElementById(
+      "loggedOutProfile"
+    );
+
+  const loggedIn =
+    document.getElementById(
+      "loggedInProfile"
+    );
+
 
   if(!currentUser){
 
-    document.getElementById("walletBalance")
-      .innerText="0";
+    loggedOut.style.display = "block";
+
+    loggedIn.style.display = "none";
 
     return;
-  }
-
-  const snap =
-    await db.collection("users")
-      .doc(currentUser.uid)
-      .get();
-
-  if(snap.exists){
-
-    const balance =
-      Number(snap.data().balance || 0);
-
-    document.getElementById("walletBalance")
-      .innerText=balance;
 
   }
 
-}
+
+  loggedOut.style.display = "none";
+
+  loggedIn.style.display = "block";
 
 
-/* =================================
-   DEPOSIT REQUEST
-================================= */
+  document.getElementById(
+    "profileEmail"
+  ).textContent =
+    currentUser.email || "";
 
-function requestDeposit(){
-
-  if(!currentUser){
-
-    openLogin();
-
-    return;
-  }
-
-  alert(
-    "Add Money করার জন্য Admin-এর সাথে যোগাযোগ করুন।"
-  );
-
-}
-
-
-/* =================================
-   TRANSACTIONS
-================================= */
-
-async function showTransactions(){
-
-  const box =
-    document.getElementById("transactions");
-
-  if(!currentUser){
-
-    box.innerHTML=
-      '<div class="empty">Login required.</div>';
-
-    return;
-  }
-
-  box.innerHTML=
-    '<div class="empty">Transactions loading...</div>';
 
   try{
 
     const snap =
-      await db.collection("transactions")
-        .where("userId","==",currentUser.uid)
-        .limit(30)
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
         .get();
 
-    if(snap.empty){
 
-      box.innerHTML=
-        '<div class="empty">No transactions yet.</div>';
+    let data = snap.exists
+      ? snap.data()
+      : {};
 
-      return;
-    }
 
-    box.innerHTML="";
+    const name =
+      data.name ||
+      currentUser.email.split("@")[0];
 
-    snap.forEach(doc=>{
 
-      const t=doc.data();
+    document.getElementById(
+      "profileName"
+    ).textContent = name;
 
-      box.innerHTML += `
 
-        <div class="matchCard">
+    document.getElementById(
+      "profileAvatar"
+    ).textContent =
+      name.charAt(0).toUpperCase();
 
-          <div style="padding:18px">
 
-            <b>${t.type || "Transaction"}</b>
+  }catch(error){
 
-            <div class="profileRow">
-              <span>Amount</span>
-              <span>৳${t.amount || 0}</span>
-            </div>
-
-            <div class="profileRow">
-              <span>Status</span>
-              <span>${t.status || "Completed"}</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-  }catch(e){
-
-    box.innerHTML=
-      '<div class="empty">No transactions available.</div>';
+    console.error(error);
 
   }
 
 }
 
 
-/* =================================
-   MATCHES
-================================= */
+/* =========================================================
+   WALLET
+========================================================= */
 
-async function loadMatches(){
-
-  const box =
-    document.getElementById("matchesList");
+async function updateWallet(){
 
   if(!currentUser){
 
-    box.innerHTML=`
+    document.getElementById(
+      "walletBalance"
+    ).textContent = "0";
 
-      <div class="empty">
+    document.getElementById(
+      "profileBalance"
+    ).textContent = "0";
 
-        <h3>🔐 Login Required</h3>
+    return;
 
-        <p style="margin:8px 0 15px">
-          Match দেখতে আগে Login করুন।
-        </p>
+  }
 
-        <button class="primary"
-                onclick="openLogin()">
+
+  try{
+
+    const snap =
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
+        .get();
+
+
+    const data =
+      snap.exists
+        ? snap.data()
+        : {};
+
+
+    const balance =
+      Number(data.balance || 0);
+
+
+    document.getElementById(
+      "walletBalance"
+    ).textContent =
+      balance.toFixed(0);
+
+
+    document.getElementById(
+      "profileBalance"
+    ).textContent =
+      balance.toFixed(0);
+
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =========================================================
+   MATCHES
+========================================================= */
+
+async function loadMatches(){
+
+  const list =
+    document.getElementById(
+      "matchList"
+    );
+
+
+  list.innerHTML =
+    '<div class="card empty">Loading matches...</div>';
+
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("tournaments")
+        .get();
+
+
+    allMatches =
+      snapshot.docs.map(function(doc){
+
+        return {
+
+          id:
+            doc.id,
+
+          ...doc.data()
+
+        };
+
+      });
+
+
+    let filtered =
+      allMatches;
+
+
+    if(currentMode !== "ALL"){
+
+      filtered =
+        allMatches.filter(function(item){
+
+          const itemMode =
+            item.mode ||
+            item.category ||
+            "BR MATCH";
+
+
+          return itemMode === currentMode;
+
+        });
+
+    }
+
+
+    document.getElementById(
+      "matchCount"
+    ).textContent =
+      filtered.length +
+      " matches available";
+
+
+    if(filtered.length === 0){
+
+      list.innerHTML =
+        '<div class="card empty">No matches available.</div>';
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      filtered
+        .map(renderMatch)
+        .join("");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      '<div class="card empty">' +
+      escapeHtml(error.message) +
+      '</div>';
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER MATCH
+========================================================= */
+
+function renderMatch(tournament){
+
+  const slots =
+    Number(
+      tournament.slots || 48
+    );
+
+
+  const players =
+    Number(
+      tournament.registeredPlayers || 0
+    );
+
+
+  const percentage =
+    slots > 0
+      ? Math.min(
+          100,
+          (players / slots) * 100
+        )
+      : 0;
+
+
+  const status =
+    tournament.status ||
+    "open";
+
+
+  const title =
+    tournament.title ||
+    "Free Fire Tournament";
+
+
+  const entry =
+    Number(
+      tournament.entryFee || 0
+    );
+
+
+  const prize =
+    Number(
+      tournament.prize || 0
+    );
+
+
+  return `
+
+    <div class="match-card">
+
+      <div class="match-banner">
+
+        <span>🎮</span>
+
+        <div class="match-status">
+          ${escapeHtml(
+            String(status).toUpperCase()
+          )}
+        </div>
+
+        <div class="match-id">
+          #${escapeHtml(
+            tournament.id.substring(0,6)
+          )}
+        </div>
+
+        <div class="match-title">
+          ${escapeHtml(title)}
+        </div>
+
+      </div>
+
+
+      <div class="match-info">
+
+        <div class="match-info-item">
+          <b>৳${entry}</b>
+          <span>ENTRY</span>
+        </div>
+
+        <div class="match-info-item">
+          <b>৳${prize}</b>
+          <span>PRIZE</span>
+        </div>
+
+        <div class="match-info-item">
+          <b>${players}/${slots}</b>
+          <span>PLAYERS</span>
+        </div>
+
+      </div>
+
+
+      <div class="progress-wrap">
+
+        <div class="progress">
+          <i style="width:${percentage}%"></i>
+        </div>
+
+      </div>
+
+
+      <div class="match-actions">
+
+        <button
+          class="prize-btn"
+          onclick="showPrize('${tournament.id}')"
+        >
+          🏆 Prizes
+        </button>
+
+        <button
+          class="join-btn"
+          onclick="openJoin('${tournament.id}')"
+        >
+          JOIN NOW
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   JOIN
+========================================================= */
+
+function openJoin(id){
+
+  selectedTournament =
+    allMatches.find(
+      function(item){
+        return item.id === id;
+      }
+    );
+
+
+  if(!selectedTournament)return;
+
+
+  if(!currentUser){
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "joinTournamentInfo"
+  ).innerHTML = `
+
+    <b>
+      ${escapeHtml(
+        selectedTournament.title ||
+        "Tournament"
+      )}
+    </b>
+
+    <br><br>
+
+    Entry:
+    <b>
+      ৳${Number(
+        selectedTournament.entryFee || 0
+      )}
+    </b>
+
+    &nbsp; | &nbsp;
+
+    Prize:
+    <b>
+      ৳${Number(
+        selectedTournament.prize || 0
+      )}
+    </b>
+
+  `;
+
+
+  clearMessage("joinMessage");
+
+
+  document.getElementById(
+    "joinModal"
+  ).classList.add("show");
+
+}
+
+
+function closeJoin(){
+
+  document
+    .getElementById("joinModal")
+    .classList.remove("show");
+
+}
+
+
+async function confirmJoin(){
+
+  if(!currentUser){
+
+    showMessage(
+      "joinMessage",
+      "Please login first.",
+      true
+    );
+
+    return;
+
+  }
+
+
+  if(!selectedTournament)return;
+
+
+  const uid =
+    document
+      .getElementById("ffUid")
+      .value
+      .trim();
+
+
+  const name =
+    document
+      .getElementById("ffName")
+      .value
+      .trim();
+
+
+  if(!uid || !name){
+
+    showMessage(
+      "joinMessage",
+      "Free Fire UID and name are required.",
+      true
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const existing =
+      await db
+        .collection("tournamentEntries")
+        .where(
+          "tournamentId",
+          "==",
+          selectedTournament.id
+        )
+        .where(
+          "userId",
+          "==",
+          currentUser.uid
+        )
+        .get();
+
+
+    if(!existing.empty){
+
+      showMessage(
+        "joinMessage",
+        "You already joined this tournament.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    await db
+      .collection("tournamentEntries")
+      .add({
+
+        tournamentId:
+          selectedTournament.id,
+
+        userId:
+          currentUser.uid,
+
+        email:
+          currentUser.email,
+
+        ffUid:
+          uid,
+
+        ffName:
+          name,
+
+        status:
+          "registered",
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    await db
+      .collection("tournaments")
+      .doc(selectedTournament.id)
+      .update({
+
+        registeredPlayers:
+          firebase.firestore.FieldValue
+            .increment(1)
+
+      });
+
+
+    showMessage(
+      "joinMessage",
+      "Tournament joined successfully!",
+      false
+    );
+
+
+    setTimeout(
+      function(){
+
+        closeJoin();
+
+        loadMatches();
+
+      },
+      900
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "joinMessage",
+      firebaseError(error),
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PRIZE
+========================================================= */
+
+function showPrize(id){
+
+  const item =
+    allMatches.find(
+      function(x){
+        return x.id === id;
+      }
+    );
+
+
+  if(!item)return;
+
+
+  alert(
+    "Tournament Prize: ৳" +
+    Number(item.prize || 0)
+  );
+
+}
+
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+async function loadResults(){
+
+  const list =
+    document.getElementById(
+      "resultsList"
+    );
+
+
+  if(!currentUser){
+
+    list.innerHTML = `
+
+      <div class="card empty">
+
+        Please login to see your results.
+
+        <br><br>
+
+        <button
+          class="primary-btn"
+          onclick="openLogin()"
+        >
           LOGIN
         </button>
 
@@ -1557,922 +2359,953 @@ async function loadMatches(){
     `;
 
     return;
+
   }
 
-  box.innerHTML=
-    '<div class="empty">Loading matches...</div>';
 
   try{
 
-    const snap =
-      await db.collection("matches")
-        .orderBy("createdAt","desc")
-        .limit(30)
+    const snapshot =
+      await db
+        .collection("results")
+        .where(
+          "userId",
+          "==",
+          currentUser.uid
+        )
         .get();
 
-    if(snap.empty){
 
-      box.innerHTML=
-        '<div class="empty">No matches available.</div>';
+    if(snapshot.empty){
+
+      list.innerHTML =
+        '<div class="card empty">No results yet.</div>';
 
       return;
-    }
-
-    box.innerHTML="";
-
-    snap.forEach(doc=>{
-
-      const m=doc.data();
-
-      const players =
-        Number(m.players || 0);
-
-      const slots =
-        Number(m.slots || 48);
-
-      const percent =
-        Math.min(100,(players/slots)*100);
-
-      const status =
-        m.status || "UPCOMING";
-
-      box.innerHTML += `
-
-        <div class="matchCard">
-
-          <div class="matchTop">
-
-            <span class="status">
-              ${status}
-            </span>
-
-            <span class="matchId">
-              #${doc.id.slice(0,6)}
-            </span>
-
-            <div>
-
-              <div class="matchTitle">
-                ${m.title || m.category || "Free Fire Match"}
-              </div>
-
-              <div class="matchMode">
-                🎮 ${m.mode || "Free Fire"}
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="matchInfo">
-
-            <div class="stat">
-              <strong>৳${m.entryFee || 0}</strong>
-              <span>Entry</span>
-            </div>
-
-            <div class="stat">
-              <strong>৳${m.prize || 0}</strong>
-              <span>Prize Pool</span>
-            </div>
-
-            <div class="stat">
-              <strong>${players}/${slots}</strong>
-              <span>Players</span>
-            </div>
-
-          </div>
-
-          <div class="progress">
-            <i style="width:${percent}%"></i>
-          </div>
-
-          <div class="matchBottom">
-
-            <div class="time">
-              🗓 ${m.matchTime || "Time not set"}
-            </div>
-
-            <button class="joinBtn"
-                    onclick='joinFirestoreMatch(${JSON.stringify(doc.id)})'>
-              JOIN NOW
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-  }catch(e){
-
-    /*
-      Firestore orderBy index না থাকলেও
-      fallback হিসেবে category matches দেখাবে।
-    */
-
-    try{
-
-      const snap =
-        await db.collection("matches")
-          .limit(30)
-          .get();
-
-      if(snap.empty){
-
-        box.innerHTML=
-          '<div class="empty">No matches available.</div>';
-
-        return;
-      }
-
-      box.innerHTML="";
-
-      snap.forEach(doc=>{
-
-        const m=doc.data();
-
-        box.innerHTML += `
-
-          <div class="matchCard">
-
-            <div class="matchTop">
-
-              <span class="status">
-                ${m.status || "UPCOMING"}
-              </span>
-
-              <div>
-                <div class="matchTitle">
-                  ${m.title || m.category || "Tournament"}
-                </div>
-
-                <div class="matchMode">
-                  🎮 ${m.mode || "Free Fire"}
-                </div>
-              </div>
-
-            </div>
-
-            <div class="matchInfo">
-
-              <div class="stat">
-                <strong>৳${m.entryFee||0}</strong>
-                <span>Entry</span>
-              </div>
-
-              <div class="stat">
-                <strong>৳${m.prize||0}</strong>
-                <span>Prize</span>
-              </div>
-
-              <div class="stat">
-                <strong>${m.players||0}/${m.slots||48}</strong>
-                <span>Players</span>
-              </div>
-
-            </div>
-
-            <div class="matchBottom">
-
-              <div class="time">
-                ${m.matchTime||"Time not set"}
-              </div>
-
-              <button class="joinBtn"
-                      onclick='joinFirestoreMatch(${JSON.stringify(doc.id)})'>
-                JOIN NOW
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-    }catch(err){
-
-      box.innerHTML=
-        '<div class="empty">Matches load করা যায়নি।</div>';
 
     }
+
+
+    list.innerHTML =
+      snapshot.docs
+        .map(function(doc){
+
+          const x = doc.data();
+
+          return `
+
+            <div class="card">
+
+              <b>
+                ${escapeHtml(
+                  x.title ||
+                  "Tournament Result"
+                )}
+              </b>
+
+              <p style="
+                color:#999;
+                font-size:12px;
+                margin-top:7px
+              ">
+                Position:
+                ${escapeHtml(
+                  String(x.position || "-")
+                )}
+              </p>
+
+              <p style="
+                color:#6257d8;
+                font-weight:bold;
+                margin-top:7px
+              ">
+                Prize:
+                ৳${Number(x.prize || 0)}
+              </p>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      '<div class="card empty">Unable to load results.</div>';
 
   }
 
 }
 
 
-/* =================================
-   JOIN FIRESTORE MATCH
-================================= */
+/* =========================================================
+   DEPOSIT
+========================================================= */
 
-async function joinFirestoreMatch(id){
+function openDeposit(){
 
   if(!currentUser){
 
     openLogin();
 
     return;
+
   }
+
+
+  clearMessage("depositMessage");
+
+  document
+    .getElementById("depositModal")
+    .classList.add("show");
+
+}
+
+
+function closeDeposit(){
+
+  document
+    .getElementById("depositModal")
+    .classList.remove("show");
+
+}
+
+
+async function submitDeposit(){
+
+  if(!currentUser)return;
+
+
+  const amount =
+    Number(
+      document
+        .getElementById("depositAmount")
+        .value
+    );
+
+
+  const method =
+    document
+      .getElementById("depositMethod")
+      .value;
+
+
+  const trx =
+    document
+      .getElementById("depositTrx")
+      .value
+      .trim();
+
+
+  if(amount <= 0 || !trx){
+
+    showMessage(
+      "depositMessage",
+      "Enter amount and transaction ID.",
+      true
+    );
+
+    return;
+
+  }
+
 
   try{
 
-    const ref =
-      db.collection("matches").doc(id);
+    await db
+      .collection("walletRequests")
+      .add({
 
-    const snap = await ref.get();
+        userId:
+          currentUser.uid,
 
-    if(!snap.exists){
+        email:
+          currentUser.email,
 
-      alert("Match পাওয়া যায়নি.");
+        type:
+          "deposit",
+
+        amount:
+          amount,
+
+        method:
+          method,
+
+        transactionId:
+          trx,
+
+        status:
+          "pending",
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    showMessage(
+      "depositMessage",
+      "Deposit request submitted.",
+      false
+    );
+
+
+  }catch(error){
+
+    showMessage(
+      "depositMessage",
+      firebaseError(error),
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   WITHDRAW
+========================================================= */
+
+function openWithdraw(){
+
+  if(!currentUser){
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  clearMessage("withdrawMessage");
+
+  document
+    .getElementById("withdrawModal")
+    .classList.add("show");
+
+}
+
+
+function closeWithdraw(){
+
+  document
+    .getElementById("withdrawModal")
+    .classList.remove("show");
+
+}
+
+
+async function submitWithdraw(){
+
+  if(!currentUser)return;
+
+
+  const amount =
+    Number(
+      document
+        .getElementById("withdrawAmount")
+        .value
+    );
+
+
+  const method =
+    document
+      .getElementById("withdrawMethod")
+      .value;
+
+
+  const number =
+    document
+      .getElementById("withdrawNumber")
+      .value
+      .trim();
+
+
+  if(amount <= 0 || !number){
+
+    showMessage(
+      "withdrawMessage",
+      "Enter valid amount and account number.",
+      true
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    const userDoc =
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
+        .get();
+
+
+    const balance =
+      Number(
+        userDoc.exists
+          ? userDoc.data().balance || 0
+          : 0
+      );
+
+
+    if(amount > balance){
+
+      showMessage(
+        "withdrawMessage",
+        "Insufficient balance.",
+        true
+      );
 
       return;
+
     }
 
-    const m=snap.data();
 
-    selectedMatch={
-      firestoreId:id,
-      ...m
-    };
+    await db
+      .collection("walletRequests")
+      .add({
 
-    document.getElementById("joinDetails").innerHTML=`
+        userId:
+          currentUser.uid,
 
-      <h3>🎮 ${m.title || m.category}</h3>
+        email:
+          currentUser.email,
 
-      <div class="profileRow">
-        <span>Entry Fee</span>
-        <span>৳${m.entryFee || 0}</span>
-      </div>
+        type:
+          "withdraw",
 
-      <div class="profileRow">
-        <span>Prize Pool</span>
-        <span>৳${m.prize || 0}</span>
-      </div>
+        amount:
+          amount,
 
-      <div class="profileRow">
-        <span>Players</span>
-        <span>${m.players || 0}/${m.slots || 48}</span>
+        method:
+          method,
+
+        accountNumber:
+          number,
+
+        status:
+          "pending",
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    showMessage(
+      "withdrawMessage",
+      "Withdrawal request submitted.",
+      false
+    );
+
+
+  }catch(error){
+
+    showMessage(
+      "withdrawMessage",
+      firebaseError(error),
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+async function checkAdmin(){
+
+  const adminSection =
+    document.getElementById("admin");
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  let isAdmin =
+    currentUser.email === ADMIN_EMAIL;
+
+
+  try{
+
+    const userDoc =
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
+        .get();
+
+
+    if(
+      userDoc.exists &&
+      userDoc.data().role === "admin"
+    ){
+
+      isAdmin = true;
+
+    }
+
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+
+  if(isAdmin){
+
+    loadAdmin();
+
+  }
+
+}
+
+
+async function loadAdmin(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  let isAdmin =
+    currentUser.email === ADMIN_EMAIL;
+
+
+  try{
+
+    const userDoc =
+      await db
+        .collection("users")
+        .doc(currentUser.uid)
+        .get();
+
+
+    if(
+      userDoc.exists &&
+      userDoc.data().role === "admin"
+    ){
+
+      isAdmin = true;
+
+    }
+
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+
+  if(!isAdmin){
+
+    document.getElementById(
+      "adminLoginBox"
+    ).innerHTML = `
+
+      <div class="empty">
+
+        <div style="font-size:40px">
+          🔒
+        </div>
+
+        <h3>Admin Access Required</h3>
+
+        <p style="
+          color:#999;
+          font-size:12px;
+          margin-top:7px
+        ">
+          Your account does not have admin permission.
+        </p>
+
       </div>
 
     `;
 
-    document.getElementById("joinMessage")
-      .innerText="";
+    document.getElementById(
+      "adminPanel"
+    ).style.display = "none";
 
-    document.getElementById("joinModal")
-      .style.display="flex";
-
-  }catch(e){
-
-    alert(e.message);
+    return;
 
   }
+
+
+  document.getElementById(
+    "adminLoginBox"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "adminPanel"
+  ).style.display = "block";
+
+
+  await loadAdminStats();
+
+  await loadAdminTournaments();
 
 }
 
 
-/* =================================
-   CONFIRM JOIN
-================================= */
-
-async function confirmJoin(){
-
-  if(!currentUser){
-
-    openLogin();
-
-    return;
-  }
-
-  if(!selectedMatch){
-
-    return;
-  }
-
-  const msg =
-    document.getElementById("joinMessage");
-
-  msg.innerText="Joining...";
+async function loadAdminStats(){
 
   try{
 
-    const userRef =
-      db.collection("users")
-        .doc(currentUser.uid);
-
-    const userSnap =
-      await userRef.get();
-
-    const userData =
-      userSnap.exists ? userSnap.data() : {};
-
-    const balance =
-      Number(userData.balance || 0);
-
-    const fee =
-      Number(selectedMatch.entryFee || 0);
-
-    if(balance < fee){
-
-      msg.innerText=
-        "❌ আপনার Wallet Balance কম।";
-
-      return;
-    }
+    const tournaments =
+      await db
+        .collection("tournaments")
+        .get();
 
 
-    /* CATEGORY MATCH */
-    if(!selectedMatch.firestoreId){
-
-      await userRef.update({
-        balance:balance-fee,
-        totalMatches:
-          Number(userData.totalMatches||0)+1
-      });
-
-      await db.collection("matches").add({
-
-        title:selectedMatch.category,
-
-        category:selectedMatch.category,
-
-        mode:selectedMatch.mode,
-
-        entryFee:fee,
-
-        prize:selectedMatch.prize,
-
-        slots:selectedMatch.slots,
-
-        players:1,
-
-        status:"UPCOMING",
-
-        matchTime:"Time not set",
-
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-
-      });
-
-    }else{
-
-      const matchRef =
-        db.collection("matches")
-          .doc(selectedMatch.firestoreId);
-
-      await db.runTransaction(async transaction=>{
-
-        const matchSnap =
-          await transaction.get(matchRef);
-
-        const freshUser =
-          await transaction.get(userRef);
-
-        if(!matchSnap.exists){
-
-          throw new Error("Match not found.");
-
-        }
-
-        const freshData=freshUser.data();
-
-        const freshBalance =
-          Number(freshData.balance||0);
-
-        if(freshBalance < fee){
-
-          throw new Error(
-            "Insufficient balance."
-          );
-
-        }
-
-        const matchData =
-          matchSnap.data();
-
-        const players =
-          Number(matchData.players||0);
-
-        const slots =
-          Number(matchData.slots||48);
-
-        if(players >= slots){
-
-          throw new Error(
-            "Match Full."
-          );
-
-        }
-
-        transaction.update(userRef,{
-          balance:freshBalance-fee,
-          totalMatches:
-            Number(freshData.totalMatches||0)+1
-        });
-
-        transaction.update(matchRef,{
-          players:players+1
-        });
-
-      });
-
-    }
+    const users =
+      await db
+        .collection("users")
+        .get();
 
 
-    msg.innerText=
-      "✅ Successfully Joined!";
+    const entries =
+      await db
+        .collection("tournamentEntries")
+        .get();
 
-    setTimeout(()=>{
 
-      closeModal("joinModal");
+    document.getElementById(
+      "adminMatches"
+    ).textContent =
+      tournaments.size;
 
-      loadWallet();
 
-      loadMatches();
+    document.getElementById(
+      "adminUsers"
+    ).textContent =
+      users.size;
 
-      loadProfile();
 
-    },800);
+    document.getElementById(
+      "adminEntries"
+    ).textContent =
+      entries.size;
 
-  }catch(e){
 
-    msg.innerText=
-      "❌ "+e.message;
+  }catch(error){
+
+    console.error(error);
 
   }
 
 }
 
 
-/* =================================
-   RESULTS
-================================= */
-
-async function loadResults(){
+async function loadAdminTournaments(){
 
   const box =
-    document.getElementById("resultsList");
-
-  if(!currentUser){
-
-    box.innerHTML=
-      '<div class="empty">Login required.</div>';
-
-    return;
-  }
-
-  try{
-
-    const snap =
-      await db.collection("results")
-        .where("userId","==",currentUser.uid)
-        .limit(30)
-        .get();
-
-    if(snap.empty){
-
-      box.innerHTML=
-        '<div class="empty">No results yet.</div>';
-
-      return;
-    }
-
-    box.innerHTML="";
-
-    snap.forEach(doc=>{
-
-      const r=doc.data();
-
-      box.innerHTML += `
-
-        <div class="matchCard">
-
-          <div style="padding:20px">
-
-            <h3>🏆 ${r.matchName || "Tournament"}</h3>
-
-            <div class="profileRow">
-              <span>Result</span>
-              <span>${r.result || "Pending"}</span>
-            </div>
-
-            <div class="profileRow">
-              <span>Prize</span>
-              <span>৳${r.prize || 0}</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-  }catch(e){
-
-    box.innerHTML=
-      '<div class="empty">No results available.</div>';
-
-  }
-
-}
-
-
-/* =================================
-   LOGOUT
-================================= */
-
-function logout(){
-
-  if(!auth)return;
-
-  auth.signOut()
-    .then(()=>{
-
-      alert("Logged out.");
-
-      showPage("home");
-
-    });
-
-}
-
-
-/* =================================
-   ADMIN BUTTON
-================================ */
-
-function updateAdminButton(){
-
-  let old =
-    document.getElementById("adminNav");
-
-  if(old) old.remove();
-
-  if(currentUser &&
-     currentUser.email === ADMIN_EMAIL){
-
-    const nav =
-      document.querySelector(".bottomNav");
-
-    const button =
-      document.createElement("button");
-
-    button.id="adminNav";
-    button.className="navItem";
-    button.innerHTML="<b>👑</b>Admin";
-    button.onclick=()=>showAdmin();
-
-    nav.appendChild(button);
-
-  }
-
-}
-
-
-function showAdmin(){
-
-  if(!currentUser){
-
-    openLogin();
-
-    return;
-  }
-
-  if(currentUser.email !== ADMIN_EMAIL){
-
-    alert("Admin access denied.");
-
-    return;
-  }
-
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
-
-  document.getElementById("admin")
-    .classList.add("active");
-
-  document.querySelectorAll(".navItem")
-    .forEach(n=>n.classList.remove("active"));
-
-  checkAdmin();
-
-}
-
-
-/* =================================
-   ADMIN CHECK
-================================= */
-
-function checkAdmin(){
-
-  if(
-    currentUser &&
-    currentUser.email === ADMIN_EMAIL
-  ){
-
-    document.getElementById("adminLoginBox")
-      .style.display="none";
-
-    document.getElementById("adminPanel")
-      .style.display="block";
-
-  }else{
-
-    document.getElementById("adminLoginBox")
-      .style.display="block";
-
-    document.getElementById("adminPanel")
-      .style.display="none";
-
-  }
-
-}
-
-
-/* =================================
-   ADMIN ADD MONEY
-================================= */
-
-async function adminAddMoney(){
-
-  const msg =
-    document.getElementById("adminMoneyMsg");
-
-  if(!currentUser ||
-     currentUser.email !== ADMIN_EMAIL){
-
-    msg.innerText="Admin access denied.";
-
-    return;
-  }
-
-  const email =
-    document.getElementById("adminPlayerEmail")
-      .value.trim();
-
-  const amount =
-    Number(
-      document.getElementById("adminMoney").value
+    document.getElementById(
+      "adminTournamentList"
     );
 
-  if(!email || amount<=0){
-
-    msg.innerText=
-      "Player email এবং amount দিন.";
-
-    return;
-  }
 
   try{
 
-    const result =
-      await db.collection("users")
-        .where("email","==",email)
-        .limit(1)
+    const snapshot =
+      await db
+        .collection("tournaments")
         .get();
 
-    if(result.empty){
 
-      msg.innerText=
-        "Player পাওয়া যায়নি.";
+    if(snapshot.empty){
+
+      box.innerHTML =
+        '<p style="color:#999">No tournaments.</p>';
 
       return;
+
     }
 
-    const userDoc=result.docs[0];
 
-    const old =
-      Number(userDoc.data().balance||0);
+    box.innerHTML =
+      snapshot.docs
+        .map(function(doc){
 
-    const updated=old+amount;
+          const x =
+            doc.data();
 
-    await userDoc.ref.update({
-      balance:updated
-    });
 
-    await db.collection("transactions")
-      .add({
+          return `
 
-        userId:userDoc.id,
+            <div
+              style="
+                border:1px solid #eee;
+                border-radius:14px;
+                padding:13px;
+                margin-top:10px
+              "
+            >
 
-        email:email,
+              <b>
+                ${escapeHtml(
+                  x.title ||
+                  "Tournament"
+                )}
+              </b>
 
-        type:"Admin Add Money",
+              <div style="
+                color:#999;
+                font-size:11px;
+                margin-top:5px
+              ">
 
-        amount:amount,
+                ${escapeHtml(
+                  x.mode ||
+                  "BR MATCH"
+                )}
 
-        status:"Completed",
+                ·
 
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp()
+                ৳${Number(
+                  x.entryFee || 0
+                )}
 
-      });
+                →
 
-    msg.innerText=
-      "✅ ৳"+amount+" added successfully.";
+                ৳${Number(
+                  x.prize || 0
+                )}
 
-    document.getElementById("adminMoney")
-      .value="";
+              </div>
 
-  }catch(e){
+            </div>
 
-    msg.innerText=e.message;
+          `;
+
+        })
+        .join("");
+
+
+  }catch(error){
+
+    box.textContent =
+      error.message;
 
   }
 
 }
 
 
-/* =================================
-   ADMIN CREATE MATCH
-================================= */
+/* =========================================================
+   CREATE TOURNAMENT
+========================================================= */
 
-async function adminCreateMatch(){
-
-  const msg =
-    document.getElementById("adminMatchMsg");
-
-  if(!currentUser ||
-     currentUser.email !== ADMIN_EMAIL){
-
-    msg.innerText="Admin access denied.";
-
-    return;
-  }
+async function createTournament(){
 
   const title =
-    document.getElementById("newTitle")
-      .value.trim();
+    document
+      .getElementById("adminTitle")
+      .value
+      .trim();
+
 
   const mode =
-    document.getElementById("newMode")
-      .value.trim();
+    document
+      .getElementById("adminMode")
+      .value;
 
-  const fee =
-    Number(document.getElementById("newFee").value);
+
+  const entryFee =
+    Number(
+      document
+        .getElementById("adminEntry")
+        .value
+    );
+
 
   const prize =
-    Number(document.getElementById("newPrize").value);
+    Number(
+      document
+        .getElementById("adminPrize")
+        .value
+    );
+
 
   const slots =
-    Number(document.getElementById("newSlots").value);
-
-  const time =
-    document.getElementById("newTime")
-      .value.trim();
-
-  if(!title || !fee || !prize || !slots){
-
-    msg.innerText=
-      "Title, Fee, Prize, Slots দিন.";
-
-    return;
-  }
-
-  try{
-
-    await db.collection("matches").add({
-
-      title:title,
-
-      mode:mode || "Free Fire",
-
-      entryFee:fee,
-
-      prize:prize,
-
-      slots:slots,
-
-      players:0,
-
-      status:"UPCOMING",
-
-      matchTime:time || "Time not set",
-
-      roomId:"",
-
-      roomPassword:"",
-
-      createdAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-
-    });
-
-    msg.innerText=
-      "✅ Match created successfully.";
-
-    document.getElementById("newTitle").value="";
-    document.getElementById("newMode").value="";
-    document.getElementById("newFee").value="";
-    document.getElementById("newPrize").value="";
-    document.getElementById("newSlots").value="";
-    document.getElementById("newTime").value="";
-
-    loadMatches();
-
-  }catch(e){
-
-    msg.innerText=e.message;
-
-  }
-
-}
+    Number(
+      document
+        .getElementById("adminSlots")
+        .value
+    );
 
 
-/* =================================
-   ADMIN UPDATE ROOM
-================================= */
+  const matchTime =
+    document
+      .getElementById("adminTime")
+      .value
+      .trim();
 
-async function adminUpdateRoom(){
-
-  const msg =
-    document.getElementById("roomMsg");
-
-  if(!currentUser ||
-     currentUser.email !== ADMIN_EMAIL){
-
-    msg.innerText="Admin access denied.";
-
-    return;
-  }
-
-  const id =
-    document.getElementById("roomMatchId")
-      .value.trim();
 
   const roomId =
-    document.getElementById("roomId")
-      .value.trim();
+    document
+      .getElementById("adminRoomId")
+      .value
+      .trim();
 
-  const password =
-    document.getElementById("roomPassword")
-      .value.trim();
 
-  if(!id){
+  const roomPassword =
+    document
+      .getElementById("adminRoomPassword")
+      .value
+      .trim();
 
-    msg.innerText=
-      "Match Document ID দিন.";
+
+  if(!title){
+
+    showMessage(
+      "adminMessage",
+      "Tournament title required.",
+      true
+    );
 
     return;
+
   }
+
 
   try{
 
-    await db.collection("matches")
-      .doc(id)
-      .update({
+    await db
+      .collection("tournaments")
+      .add({
 
-        roomId:roomId,
+        title:
+          title,
 
-        roomPassword:password,
+        mode:
+          mode,
 
-        status:"LIVE"
+        category:
+          mode,
+
+        entryFee:
+          entryFee,
+
+        prize:
+          prize,
+
+        slots:
+          slots,
+
+        registeredPlayers:
+          0,
+
+        status:
+          "open",
+
+        matchTime:
+          matchTime,
+
+        roomId:
+          roomId || "-",
+
+        roomPassword:
+          roomPassword || "-",
+
+        createdAt:
+          firebase.firestore.FieldValue
+            .serverTimestamp()
 
       });
 
-    msg.innerText=
-      "✅ Room updated.";
 
-    loadMatches();
+    showMessage(
+      "adminMessage",
+      "Tournament created successfully.",
+      false
+    );
 
-  }catch(e){
 
-    msg.innerText=e.message;
+    await loadAdmin();
+
+    await loadMatches();
+
+
+  }catch(error){
+
+    showMessage(
+      "adminMessage",
+      firebaseError(error),
+      true
+    );
 
   }
 
 }
 
 
-/* =================================
-   MODAL CLICK OUTSIDE
-================================= */
+/* =========================================================
+   UTILITIES
+========================================================= */
 
-window.addEventListener("click",e=>{
+function showMessage(
+  id,
+  text,
+  error
+){
 
-  if(e.target ===
-     document.getElementById("loginModal")){
+  const element =
+    document.getElementById(id);
 
-    closeModal("loginModal");
+
+  if(!element)return;
+
+
+  element.textContent =
+    text;
+
+
+  element.className =
+    "message show " +
+    (error
+      ? "error"
+      : "success");
+
+}
+
+
+function clearMessage(id){
+
+  const element =
+    document.getElementById(id);
+
+
+  if(element){
+
+    element.className =
+      "message";
+
+    element.textContent =
+      "";
 
   }
 
-  if(e.target ===
-     document.getElementById("joinModal")){
+}
 
-    closeModal("joinModal");
+
+function escapeHtml(value){
+
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    function(char){
+
+      const map = {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      };
+
+      return map[char];
+
+    }
+  );
+
+}
+
+
+function firebaseError(error){
+
+  if(!error)return "Unknown error.";
+
+  if(
+    error.code ===
+    "auth/api-key-not-valid"
+  ){
+
+    return "Firebase API key is not valid. Check Firebase/Google Cloud API key settings.";
 
   }
 
-});
+
+  if(
+    error.code ===
+    "auth/invalid-credential"
+  ){
+
+    return "Email or password is incorrect.";
+
+  }
+
+
+  if(
+    error.code ===
+    "auth/email-already-in-use"
+  ){
+
+    return "This email is already registered.";
+
+  }
+
+
+  if(
+    error.code ===
+    "auth/weak-password"
+  ){
+
+    return "Password should be at least 6 characters.";
+
+  }
+
+
+  return error.message ||
+    "Something went wrong.";
+
+}
+
+
+/* =========================================================
+   ADMIN BUTTON
+   Long press / browser console not needed.
+   Add this button only if admin wants direct portal.
+========================================================= */
+
+document.addEventListener(
+  "dblclick",
+  function(event){
+
+    if(
+      event.target.closest(".brand")
+    ){
+
+      showPage("admin");
+
+    }
+
+  }
+);
 
 </script>
 
